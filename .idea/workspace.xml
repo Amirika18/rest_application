@@ -2,45 +2,55 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9505743b-40fb-46e8-b453-f38672779fc8" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.eslintrc.cjs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.prettierrc.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/favicon.ico" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/App.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/base.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/logo.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/main.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/HelloWorld.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/TheWelcome.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/WelcomeItem.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/icons/IconCommunity.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/icons/IconDocumentation.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/icons/IconEcosystem.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/icons/IconSupport.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/icons/IconTooling.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/router/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/views/AboutView.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/views/HomeView.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vite.config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Header.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Menu.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/MenuItem.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/views/DepartmentsView.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/views/PositionsView.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/views/ProjectRolesView.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/views/ProjectsView.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/views/SkillsView.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/views/SystemRolesView.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/views/UsersView.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/base.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/base.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/main.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/icons/IconCommunity.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/icons/IconDocumentation.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/icons/IconEcosystem.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/icons/IconSupport.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/icons/IconTooling.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/router/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="package.json" />
+        <option value="Vue Single File Component" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="2HWmDYl8ZdFtxiokOrk8IAfiKaa" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -60,8 +70,16 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1668409094762</updated>
-      <workItem from="1668409095870" duration="1167000" />
+      <workItem from="1668409095870" duration="10133000" />
     </task>
+    <task id="LOCAL-00001" summary="Initial project commit">
+      <created>1668410344559</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1668410344559</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -77,5 +95,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Initial project commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="Initial project commit" />
   </component>
 </project>
