@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="9505743b-40fb-46e8-b453-f38672779fc8" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/components/HighLabel.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/InputNewUser.vue" afterDir="false" />
+    <list default="true" id="9505743b-40fb-46e8-b453-f38672779fc8" name="Changes" comment="Users View Changes">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/base.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/base.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/router/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/UsersView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/UsersView.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/HelloWorld.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/InputNewUser.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/InputNewUser.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/TheWelcome.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/WelcomeItem.vue" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,7 +55,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1668409094762</updated>
-      <workItem from="1668409095870" duration="18137000" />
+      <workItem from="1668409095870" duration="19408000" />
     </task>
     <task id="LOCAL-00001" summary="Initial project commit">
       <created>1668410344559</created>
@@ -73,7 +71,14 @@
       <option name="project" value="LOCAL" />
       <updated>1668419401350</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Users View Changes">
+      <created>1668431453269</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1668431453269</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -92,6 +97,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Initial project commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="Initial project commit" />
+    <MESSAGE value="Users View Changes" />
+    <option name="LAST_COMMIT_MESSAGE" value="Users View Changes" />
   </component>
 </project>

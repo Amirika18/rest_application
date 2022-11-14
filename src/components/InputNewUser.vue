@@ -18,11 +18,13 @@
 .container {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
+  font-size: 24px;
 }
 .form {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   background: var(--color-gray);
+  height: 60px;
   padding: 5px;
 }
 #name {
@@ -45,6 +47,7 @@ input[type="text"] {
   margin: 5px;
   background: var(--vt-c-white);
   border-style: none;
-  /*font-size: 24px;*/
+  font-size: 24px;
+  max-width: 160px;
 }
 </style>
