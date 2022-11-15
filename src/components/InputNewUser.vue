@@ -18,11 +18,13 @@
 .container {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
+  font-size: 24px;
 }
 .form {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   background: var(--color-gray);
+  height: 60px;
   padding: 5px;
 }
 #name {
@@ -43,8 +45,14 @@ button {
 }
 input[type="text"] {
   margin: 5px;
-  background: var(--vt-c-white);
+  background: var(--color-white);
   border-style: none;
-  /*font-size: 24px;*/
+  font-size: 24px;
+  max-width: 200px;
+}
+@media (max-width: 1500px) {
+input[type="text"] {
+  max-width: 160px;
+}
 }
 </style>

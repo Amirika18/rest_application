@@ -2,18 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9505743b-40fb-46e8-b453-f38672779fc8" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/components/listElements/ContentHolder.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/listElements/nameIdElement.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/InputNewProject.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/UserLabel.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/AboutView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/AboutView.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/DepartmentsView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/DepartmentsView.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/HomeView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/HomeView.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/PositionsView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/PositionsView.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/ProjectRolesView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/ProjectRolesView.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/ProjectsView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/ProjectsView.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/SkillsView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/SkillsView.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/SystemRolesView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/SystemRolesView.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/base.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/base.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Header.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Header.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/HighLabel.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Label.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/InputNewUser.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/InputNewUser.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/views/UsersView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/UsersView.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -32,7 +27,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="enaumova" />
+        <entry key="$PROJECT_DIR$" value="master" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -41,18 +36,20 @@
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="2HWmDYl8ZdFtxiokOrk8IAfiKaa" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+  <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "prettierjs.PrettierConfiguration.Package": "C:\\Users\\aaleynikov\\WebstormProjects\\rest_app\\node_modules\\prettier"
-  }
-}]]></component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -61,7 +58,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1668409094762</updated>
-      <workItem from="1668409095870" duration="10133000" />
+      <workItem from="1668409095870" duration="22426000" />
     </task>
     <task id="LOCAL-00001" summary="Initial project commit">
       <created>1668410344559</created>
@@ -70,7 +67,28 @@
       <option name="project" value="LOCAL" />
       <updated>1668410344559</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Initial project commit">
+      <created>1668419401350</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1668419401350</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Users View Changes">
+      <created>1668431453269</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1668431453269</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Useless files were deleted, input fields were fixed">
+      <created>1668432812637</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1668432812637</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -81,19 +99,7 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State>
-              <option name="FILTERS">
-                <map>
-                  <entry key="branch">
-                    <value>
-                      <list>
-                        <option value="origin/enaumova" />
-                      </list>
-                    </value>
-                  </entry>
-                </map>
-              </option>
-            </State>
+            <State />
           </value>
         </entry>
       </map>
@@ -101,6 +107,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Initial project commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="Initial project commit" />
+    <MESSAGE value="Users View Changes" />
+    <MESSAGE value="Useless files were deleted, input fields were fixed" />
+    <option name="LAST_COMMIT_MESSAGE" value="Useless files were deleted, input fields were fixed" />
   </component>
 </project>

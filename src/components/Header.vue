@@ -8,6 +8,6 @@
 .header {
   height: 80px;
   background: var(--color-header-background);
-  color: var(--vt-c-white);
+  color: var(--color-white);
 }
 </style>
