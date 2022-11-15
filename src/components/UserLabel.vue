@@ -8,7 +8,7 @@
         <slot name="name"></slot>
       </div>
       <div class="id">
-        <slot name="id"></slot>
+        <slot name="id">{{id}}</slot>
       </div>
     </div>
   </div>
@@ -23,6 +23,10 @@
   background: var(--color-gray);
   align-items: center;
   padding: 10px;
+}
+.label:hover {
+  cursor: pointer;
+  background: var(--color-choose);
 }
 .data {
   display: grid;

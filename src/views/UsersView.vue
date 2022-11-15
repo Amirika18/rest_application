@@ -11,6 +11,15 @@ import UserLabel from '../components/UserLabel.vue'
     {id: "#000003", name: "Test2", active: false},
     {id: "#000004", name: "Test3", active: true}
   ];
+
+  export default {
+    methods: {
+      link(id) {
+        let url = '/edit_profile/' + id.substring(1);
+        this.$router.push({path: url, param: {id: id}});
+      }
+    }
+  }
 </script>
 
 <template>
@@ -24,7 +33,7 @@ import UserLabel from '../components/UserLabel.vue'
    <container>
      <UserLabel v-for="item in items"
                 :key="item.id"
-                :class="{'inactive' : !item.active}">
+                :class="{'inactive' : !item.active}" @click="link(item.id)">
        <template #name>
          {{ item.name }}
        </template>
