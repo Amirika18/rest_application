@@ -3,7 +3,7 @@
 
 <template>
   <div class="container">
-    <div id="name">ФИО</div>
+    <div id="label">ФИО</div>
     <form class="form">
       <input type="text" id="surname-input" name="surname-input" required placeholder="Фамилия">
       <input type="text" id="name-input" name="name-input" required placeholder="Имя">
@@ -27,7 +27,7 @@
   height: 60px;
   padding: 5px;
 }
-#name {
+#label {
   border-radius: 30px 0 0 30px;
   margin-right: 10px;
   text-align: center;

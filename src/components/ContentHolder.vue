@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import NameIdElement from "./nameIdElement.vue";
+import NameIdElement from "./listElements/nameIdElement.vue";
 export default {
   name: "ContentHolder",
   components: {NameIdElement},

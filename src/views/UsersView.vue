@@ -1,7 +1,9 @@
+<!--/users-->
 <script setup>
-import Label from '../components/Label.vue'
-import InputNewUser from '../components/InputNewUser.vue'
-import UserLabel from '../components/UserLabel.vue'
+import Label from '../components/listElements/Label.vue'
+import InputNewUser from '../components/listElements/InputNewUser.vue'
+import UserLabel from '../components/listElements/UserLabel.vue'
+import ContentHolder from "../components/ContentHolder.vue";
 </script>
 
 <template>
@@ -22,17 +24,6 @@ import UserLabel from '../components/UserLabel.vue'
    </UserLabel>
  </div>
 </template>
-
-<script>
-import ContentHolder from "../components/listElements/ContentHolder.vue";
-export default {
-  name: "UsersView",
-  components: {InputNewUser, ContentHolder}
-}
-import HighLabel from '../components/HighLabel.vue'
-import InputNewUser from '../components/InputNewUser.vue'
-
-</script>
 
 <style scoped>
 div {
