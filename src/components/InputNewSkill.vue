@@ -3,11 +3,10 @@
 
 <template>
   <div class="container">
-    <div id="name">ФИО</div>
+    <div id="name">Навык</div>
     <form class="form">
-      <input type="text" id="surname-input" name="surname-input" required placeholder="Фамилия">
-      <input type="text" id="name-input" name="name-input" required placeholder="Имя">
-      <input type="text" id="patronymic-input" name="patronymic-input" required placeholder="Отчество">
+      <input type="text" id="skill-input" name="surname-input" required placeholder="Навык">
+      <input type="text" id="description-input" name="name-input" required placeholder="Описание">
     </form>
     <button type="submit">Добавить</button>
   </div>
@@ -17,12 +16,12 @@
 <style scoped>
 .container {
   display: grid;
-  grid-template-columns: 1fr 3fr 1fr;
+  grid-template-columns: 1fr 4fr 1fr;
   font-size: 24px;
 }
 .form {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 2fr;
   background: var(--color-gray);
   height: 60px;
   padding: 5px;
@@ -33,6 +32,9 @@
   text-align: center;
   padding: 10px;
   background: var(--color-gray);
+}
+#skill-input {
+  max-width: 200px;
 }
 button {
   font-size: 24px;
@@ -48,6 +50,5 @@ input[type="text"] {
   background: var(--color-white);
   border-style: none;
   font-size: 24px;
-  max-width: 200px;
 }
 </style>
