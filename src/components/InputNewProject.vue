@@ -3,14 +3,14 @@
 
 <template>
   <div class="container">
-    <div id="label">проект</div>
+    <div id="label">Проект</div>
     <form class="form">
       <div class="rows">
-        <input required placeholder="Имя">
-        <input>
-        <input>
+        <input type="text" id="name-input" name="name-input" required placeholder="Название">
+        <input type="date" id="start-date-input" name="start-date-input" required placeholder="Дата начала">
+        <input type="date" id="end-date-input" name="end-date-input" placeholder="Дата окончания">
       </div>
-      <input id="description">
+      <textarea v-model="description" id="description-input" name="description-input" required placeholder="Описание"></textarea>
     </form>
     <button type="submit">Добавить</button>
   </div>
@@ -23,32 +23,25 @@
   grid-template-columns: 1fr 5fr 1fr;
   font-size: 24px;
   height: 160px;
-  max-width: 900px;
 }
 button {
   width: 150px;
   font-size: 24px;
   color: var(--color-text);
   border-radius: 0 30px 30px 0;
-  /*height: 60px;*/
   margin-left: 10px;
   background: var(--color-gray);
   border-style: none;
 }
 .form {
-  max-width: 580px;
   padding: 5px;
   display: grid;
-  grid-template-columns: 1fr 2fr;
+  grid-template-columns: 1fr 3fr;
   background: var(--color-gray);
 }
 .rows {
   display: grid;
   grid-template-rows: 1fr 1fr 1fr;
-}
-#description {
-  max-width: 370px;
-
 }
 #label {
   width: 150px;
@@ -56,18 +49,15 @@ button {
   background: var(--color-gray);
   margin-right: 10px;
   text-align: center;
-
-  /*text-align-all: center;*/
-  /*align-content: center;*/
-  /*vertical-align: center;*/
-  /*padding: 10px;*/
-  padding-top: 57px;
+  padding-top: 60px;
 }
-input{
+input, textarea{
   margin: 5px;
   background: var(--color-white);
   border-style: none;
   font-size: 24px;
+}
+#name-input {
   max-width: 180px;
 }
 </style>

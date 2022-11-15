@@ -5,7 +5,7 @@ import SkillLabel from '../components/SkillLabel.vue'
 </script>
 
 <script>
-var items = [
+let items = [
   {id: "#000001", description: "Long Long Long Long Long Long Long Long Long Long Long Long Long Long Long Long Long " +
         "Long Long Long Long Long ", name: "Skill"},
   {id: "#000002", description: "Long Long Long Long Long Long Long Long Long Long Long Long Long Long Long Long Long " +
@@ -30,20 +30,20 @@ items.forEach(item => {
       </template>
     </Label>
     <InputNewSkill />
-      <container>
-        <SkillLabel v-for="item in items"
-                   :key="item.id">
-          <template #name>
-            {{ item.name }}
-          </template>
-          <template #description>
-            {{ item.description }}
-          </template>
-          <template #id>
-            {{ item.id }}
-          </template>
-        </SkillLabel>
-      </container>
+    <container>
+      <SkillLabel v-for="item in items"
+                 :key="item.id">
+        <template #name>
+          {{ item.name }}
+        </template>
+        <template #description>
+          {{ item.description }}
+        </template>
+        <template #id>
+          {{ item.id }}
+        </template>
+      </SkillLabel>
+    </container>
   </div>
 </template>
 
