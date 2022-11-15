@@ -1,17 +1,15 @@
-<!--/users-->
 <script setup>
-import Label from '../components/listElements/Label.vue'
-import InputNewUser from '../components/listElements/InputNewUser.vue'
-import UserLabel from '../components/listElements/UserLabel.vue'
-import ContentHolder from "../components/ContentHolder.vue";
+import Label from '../components/Label.vue'
+import InputNewUser from '../components/InputNewUser.vue'
+import UserLabel from '../components/UserLabel.vue'
 </script>
 
 <script>
   var items = [
-    {id: "#000001", name: "овсов овес овесович", active: true},
-    {id: "#000002", name: "ивашка", active: false},
-    {id: "#000003", name: "дурашка", active: false},
-    {id: "#000004", name: "великий человек", active: true}
+    {id: "#000001", name: "Test", active: true},
+    {id: "#000002", name: "Test1", active: false},
+    {id: "#000003", name: "Test2", active: false},
+    {id: "#000004", name: "Test3", active: true}
   ];
 </script>
 

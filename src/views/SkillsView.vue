@@ -7,7 +7,7 @@ import SkillLabel from '../components/SkillLabel.vue'
 <script>
 var items = [
   {id: "#000001", description: "Long Long Long Long Long Long Long Long Long Long Long Long Long Long Long Long Long " +
-        "Long Long Long Long Long ", name: "навык1"},
+        "Long Long Long Long Long ", name: "Skill"},
   {id: "#000002", description: "Long Long Long Long Long Long Long Long Long Long Long Long Long Long Long Long Long " +
         "Long Long Long Long Long ", name: "Js"},
   {id: "#000003", description: "Long Long Long Long Long Long Long Long Long Long Long Long Long Long Long Long Long " +
@@ -46,12 +46,6 @@ items.forEach(item => {
       </container>
   </div>
 </template>
-
-<script>
-export default {
-  name: "SkillsView"
-}
-</script>
 
 <style scoped>
 div {
