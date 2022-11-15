@@ -6,9 +6,15 @@ import Header from './components/Header.vue'
 
 <template>
   <Header />
-  <Menu />
-  <RouterView />
+  <div class="container">
+    <Menu />
+    <RouterView />
+  </div>
 </template>
 
 <style scoped>
+.container {
+  display: grid;
+  grid-template-columns: 1fr 3fr 1fr;
+}
 </style>
