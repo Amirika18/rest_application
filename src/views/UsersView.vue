@@ -5,7 +5,7 @@ import UserLabel from '../components/UserLabel.vue'
 </script>
 
 <script>
-  var items = [
+  let items = [
     {id: "#000001", name: "Test", active: true},
     {id: "#000002", name: "Test1", active: false},
     {id: "#000003", name: "Test2", active: false},

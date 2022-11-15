@@ -13,7 +13,7 @@ import ProjectLabel from '../components/ProjectLabel.vue'
    {name: "12345", description: "Long Long LognLong Long LognLong Long LognLong Long LognLong Long LognLong Long LognLong Long LognLong Long LognLong Long LognLong Long LognLong Long LognLong Long LognLong Long LognLong Long Logn",
      id: "#000002", date_start: "03.12.2019", date_end: "24.03.2020"},
    {name: "12345", description: "llllllllllllllll llllllllllllllll llllllllllllllll",
-     id: "#000003", date_start: "19.11.2000", date_end: "12.11.2003"},
+     id: "#000003", date_start: "19.11.2000", date_end: "12.11.2003"}
  ]
  items.forEach(item => {
    item['period'] = item.date_start + '-' + item.date_end;

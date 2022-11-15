@@ -3,10 +3,9 @@
 
 <template>
   <div class="container">
-    <div id="name">Навык</div>
+    <div id="name">Отдел</div>
     <form class="form">
-      <input type="text" id="skill-input" name="skill-input" required placeholder="Навык">
-      <input type="text" id="description-input" name="description-input" required placeholder="Описание">
+      <input type="text" id="department-input" name="department-input" required placeholder="Отдел">
     </form>
     <button type="submit">Добавить</button>
   </div>
@@ -21,7 +20,7 @@
 }
 .form {
   display: grid;
-  grid-template-columns: 1fr 2fr;
+  grid-template-columns: 1fr;
   background: var(--color-gray);
   height: 60px;
   padding: 5px;
@@ -32,9 +31,6 @@
   text-align: center;
   padding: 10px;
   background: var(--color-gray);
-}
-#skill-input {
-  max-width: 200px;
 }
 button {
   font-size: 24px;
