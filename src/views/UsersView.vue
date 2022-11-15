@@ -1,7 +1,9 @@
+<!--/users-->
 <script setup>
-import Label from '../components/Label.vue'
-import InputNewUser from '../components/InputNewUser.vue'
-import UserLabel from '../components/UserLabel.vue'
+import Label from '../components/listElements/Label.vue'
+import InputNewUser from '../components/listElements/InputNewUser.vue'
+import UserLabel from '../components/listElements/UserLabel.vue'
+import ContentHolder from "../components/ContentHolder.vue";
 </script>
 
 <script>

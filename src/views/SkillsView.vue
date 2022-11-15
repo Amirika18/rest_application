@@ -47,6 +47,12 @@ items.forEach(item => {
   </div>
 </template>
 
+<script>
+export default {
+  name: "SkillsView"
+}
+</script>
+
 <style scoped>
 div {
   margin: 20px;
