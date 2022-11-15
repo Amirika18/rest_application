@@ -1,5 +1,6 @@
 <script setup>
-import EditLabel from '../components/edit/EditLabel.vue'
+import EditLabel from '../components/profile/EditLabel.vue'
+import UserInformation from '../components/profile/UserInformation.vue'
 </script>
 
 <template>
@@ -9,6 +10,11 @@ import EditLabel from '../components/edit/EditLabel.vue'
         Профиль сотрудника
       </template>
     </EditLabel>
+    <UserInformation>
+      <template #name>fio</template>
+      <template #department>dep</template>
+      <template #position>position</template>
+    </UserInformation>
   </div>
 </template>
 

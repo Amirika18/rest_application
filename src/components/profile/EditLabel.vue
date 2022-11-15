@@ -1,6 +1,8 @@
 <template>
   <div class="label">
-    <div/>
+    <div class="icon">
+      🠨
+    </div>
     <div>
       <slot name="label"></slot>
     </div>
