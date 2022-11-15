@@ -45,9 +45,14 @@ button {
 }
 input[type="text"] {
   margin: 5px;
-  background: var(--vt-c-white);
+  background: var(--color-white);
   border-style: none;
   font-size: 24px;
+  max-width: 200px;
+}
+@media (max-width: 1500px) {
+input[type="text"] {
   max-width: 160px;
+}
 }
 </style>

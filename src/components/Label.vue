@@ -7,7 +7,7 @@
 <style scoped>
 .label {
   background: var(--color-header-background);
-  color: var(--vt-c-white);
+  color: var(--color-white);
   align-items: center;
   text-align: center;
   padding: 10px;

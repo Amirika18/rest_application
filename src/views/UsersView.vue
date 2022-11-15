@@ -1,16 +1,25 @@
 <script setup>
-import HighLabel from '../components/HighLabel.vue'
+import Label from '../components/Label.vue'
 import InputNewUser from '../components/InputNewUser.vue'
+import UserLabel from '../components/UserLabel.vue'
 </script>
 
 <template>
  <div>
-   <HighLabel>
+   <Label>
      <template #label>
         Сотрудники
      </template>
-   </HighLabel>
+   </Label>
    <InputNewUser />
+   <UserLabel>
+     <template #name>
+       Фамилия имя отчество
+     </template>
+     <template #id>
+       #000001
+     </template>
+   </UserLabel>
  </div>
 </template>
 

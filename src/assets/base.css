@@ -1,17 +1,14 @@
-/* color palette from <https://github.com/vuejs/theme> */
-:root {
-  --vt-c-white: #ffffff;
-}
-
-/* semantic color variables for this project */
 :root {
   --section-gap: 160px;
 
-  --color-background: var(--vt-c-white);
+  --color-gray: #D0DAE6;
+  --color-white: #ffffff;
+
+  --color-background: var(--color-white);
   --color-header-background: #0C2B51;
   --color-text: #0C2B51;
+  --color-text-light: #4D7AB2;
   --color-hover: hsla(213, 74%, 18%, 0.2);
-  --color-gray: #D0DAE6;
 }
 
 *,
