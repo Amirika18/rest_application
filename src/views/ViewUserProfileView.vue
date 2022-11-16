@@ -1,6 +1,8 @@
 <script setup>
-import EditLabel from '../components/profile/EditLabel.vue'
-import UserInformation from '../components/profile/UserInformation.vue'
+import EditLabel from '../components/EditLabel.vue'
+import UserInformation from '../components/userProfile/UserInformation.vue'
+import ProjectInformation from '../components/userProfile/ProjectInformation.vue'
+import SkillsLabelProfile from '../components/userProfile/SkillsLabelProfile.vue'
 </script>
 
 <template>
@@ -15,6 +17,8 @@ import UserInformation from '../components/profile/UserInformation.vue'
       <template #department>dep</template>
       <template #position>position</template>
     </UserInformation>
+    <ProjectInformation />
+    <SkillsLabelProfile/>
   </div>
 </template>
 

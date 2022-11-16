@@ -50,10 +50,16 @@ const router = createRouter({
       component: () => import('../views/PositionsView.vue')
     },
     {
-      path: '/edit_profile/:id',
-      name: 'edit_profile',
+      path: '/view_profile/:id',
+      name: 'view_profile',
       replace: true,
       component: () => import('../views/ViewUserProfileView.vue')
+    },
+    {
+      path: '/view_skill/:id',
+      name: 'view_skill',
+      replace: true,
+      component: () => import('../views/ViewSkillProfileView.vue')
     }
   ]
 })

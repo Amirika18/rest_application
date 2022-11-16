@@ -20,6 +20,15 @@ items.forEach(item => {
     item.description = item.description.substring(0, 45) + '...';
   }
 })
+
+export default {
+  methods: {
+    link(id) {
+      let url = '/view_skill/' + id.substring(1);
+      this.$router.push({path: url, param: {id: id}});
+    }
+  }
+}
 </script>
 
 <template>
@@ -32,7 +41,7 @@ items.forEach(item => {
     <InputNewSkill />
     <container>
       <SkillLabel v-for="item in items"
-                 :key="item.id">
+                 :key="item.id" @click="link(item.id)">
         <template #name>
           {{ item.name }}
         </template>

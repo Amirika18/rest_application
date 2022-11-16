@@ -27,6 +27,10 @@
   align-items: center;
   padding: 10px;
 }
+.label:hover {
+  cursor: pointer;
+  background: var(--color-choose);
+}
 .data {
   display: grid;
   grid-template-columns: 1fr 6fr 1fr;

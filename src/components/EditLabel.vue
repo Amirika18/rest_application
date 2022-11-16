@@ -1,6 +1,6 @@
 <template>
   <div class="label">
-    <div class="icon">
+    <div class="icon" @click="backView">
       🠨
     </div>
     <div>
@@ -11,6 +11,16 @@
     </div>
   </div>
 </template>
+
+<script>
+export default {
+  methods: {
+    backView() {
+      this.$router.back();
+    }
+  }
+}
+</script>
 
 <style scoped>
 .label {
