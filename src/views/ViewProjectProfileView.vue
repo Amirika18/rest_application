@@ -1,7 +1,7 @@
 <script setup>
 import EditLabel from '../components/EditLabel.vue'
 import Label from '../components/Label.vue'
-import SkillLabelProfile from '../components/skillProfile/SkillLabelProfile.vue'
+import ProjectLabelProfile from '../components/projectProfile/ProjectLabelProfile.vue'
 import UserLabel from '../components/UserLabel.vue'
 </script>
 
@@ -9,16 +9,16 @@ import UserLabel from '../components/UserLabel.vue'
   <div>
     <EditLabel>
       <template #label>
-        Страница навыка
+        Страница проекта
       </template>
     </EditLabel>
-    <SkillLabelProfile>
-      <template #name>Skill</template>
+    <ProjectLabelProfile>
+      <template #name>Project</template>
       <template #description>Description</template>
-    </SkillLabelProfile>
+    </ProjectLabelProfile>
     <Label>
       <template #label>
-        Подходящие сотрудники
+        Команда
       </template>
     </Label>
     <container>

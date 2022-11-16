@@ -15,7 +15,7 @@ import UserLabel from '../components/UserLabel.vue'
   export default {
     methods: {
       link(id) {
-        let url = '/view_profile/' + id.substring(1);
+        let url = '/view_user/' + id.substring(1);
         this.$router.push({path: url, param: {id: id}});
       }
     }

@@ -21,6 +21,15 @@ import ProjectLabel from '../components/ProjectLabel.vue'
      item.description = item.description.substring(0, 150) + '...';
    }
  })
+
+export default {
+ methods: {
+   link(id) {
+     let url = '/view_project/' + id.substring(1);
+     this.$router.push({path: url, param: {id: id}});
+   }
+ }
+}
 </script>
 
 <template>
@@ -33,7 +42,7 @@ import ProjectLabel from '../components/ProjectLabel.vue'
     <InputNewProject />
     <container>
       <ProjectLabel v-for="item in items"
-                    :key="item.id">
+                    :key="item.id" @click="link(item.id)">
         <template #name>
           {{ item.name }}
         </template>

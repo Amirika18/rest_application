@@ -30,6 +30,10 @@
   align-items: center;
   padding: 10px;
 }
+.project:hover {
+  cursor: pointer;
+  background: var(--color-choose);
+}
 .information {
   display: grid;
   grid-template-columns: 6fr 1fr;
