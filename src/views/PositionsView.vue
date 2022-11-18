@@ -11,6 +11,14 @@ let items = [
   {id: "#000003", name: "Должность"},
   {id: "#000004", name: "Должность"}
 ];
+export default {
+  methods: {
+    link(id, name) {
+      let url = '/view_position/' + id.substring(1);
+      this.$router.push({path: url, param: {id: id, position: name}});
+    }
+  }
+}
 </script>
 
 <template>
@@ -23,7 +31,8 @@ let items = [
     <InputNewPosition />
     <container>
       <PositionLabel v-for="item in items"
-                        :key="item.id">
+                        :key="item.id"
+                        @click="link(item.id, item.name)">
         <template #position>
           {{ item.name }}
         </template>

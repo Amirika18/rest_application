@@ -30,6 +30,7 @@ export default {
   text-align: center;
   padding: 10px;
   height: 60px;
+  min-width: 340px;
   border-radius: 30px;
   font-size: 24px;
   display: grid;

@@ -13,9 +13,9 @@ import SkillsLabelProfile from '../components/userProfile/SkillsLabelProfile.vue
       </template>
     </EditLabel>
     <UserInformation>
-      <template #name>fio</template>
-      <template #department>dep</template>
-      <template #position>position</template>
+      <template #name>{{ this.responseData.name }}</template>
+      <template #department>{{ this.responseData.department }}</template>
+      <template #position>{{ this.responseData.position }}</template>
     </UserInformation>
     <ProjectInformation />
     <SkillsLabelProfile/>
@@ -23,10 +23,39 @@ import SkillsLabelProfile from '../components/userProfile/SkillsLabelProfile.vue
 </template>
 
 <script>
+import urlDb from '../../params';
+
 export default {
+  created() {
+    this.getData();
+  },
+  data() {
+    return {
+      responseData: {}
+    }
+  },
   methods: {
     getId() {
       return this.$router.currentRoute._value.fullPath.split('/')[2];
+    },
+    getData() {
+      let url = urlDb + '/db_api/users/' + this.getId();
+      fetch(url, {
+        method: "get"
+      })
+      .then( res => {
+        return res.json()
+      })
+      .then(data => {
+        let items = {
+          id: "#" + String(data.data.id).padStart(6, '0'),
+          name: data.data.surname + " " + data.data.name + " " + data.data.patronymic,
+          department: data.data.department,
+          position: data.data.position
+        };
+        this.responseData = items;
+        return items;
+      })
     }
   }
 }

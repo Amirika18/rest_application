@@ -66,6 +66,24 @@ const router = createRouter({
       name: 'view_project',
       replace: true,
       component: () => import('../views/ViewProjectProfileView.vue')
+    },
+    {
+      path: '/view_system_role/:id',
+      name: 'view_system_role',
+      replace: true,
+      component: () => import('../views/ViewSystemRoleProfileView.vue')
+    },
+    {
+      path: '/view_project_role/:id',
+      name: 'view_project_role',
+      replace: true,
+      component: () => import('../views/ViewProjectRoleProfileView.vue')
+    },
+    {
+      path: '/view_position/:id',
+      name: 'view_position',
+      replace: true,
+      component: () => import('../views/ViewPositionProfileView.vue')
     }
   ]
 })

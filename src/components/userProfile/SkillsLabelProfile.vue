@@ -6,7 +6,7 @@ import SkillBubble from './SkillBubble.vue'
   <div id="label_skill">
     <div id="skills">Навыки</div>
     <div class="row">
-      <SkillBubble v-for="item in items" :key="item.id">
+      <SkillBubble v-for="item in this.responseData" :key="item.id">
         <template #skill>{{ item.skill }}</template>
       </SkillBubble>
     </div>
@@ -14,16 +14,44 @@ import SkillBubble from './SkillBubble.vue'
 </template>
 
 <script>
-let items = [
-  {id: "#000001", skill: "JS"},
-  {id: "#000002", skill: "Коммуникативность"},
-  {id: "#000003", skill: "C++"},
-  {id: "#000004", skill: "Python"},
-  {id: "#000005", skill: "GoLang"},
-  {id: "#000006", skill: "JavaScript"},
-]
+import urlDb from '../../../params.js';
+
 export default {
-  name: "SkillLabelProfile"
+  name: "SkillLabelProfile",
+  methods: {
+    getData() {
+      let id = this.getId();
+      let url = urlDb + "/db_api/users/" + id + "/skills";
+      fetch(url, {
+        method: "get"
+      })
+      .then(res => {
+        return res.json()
+      })
+      .then(data => {
+        let items = [];
+        data.data.forEach(skill => {
+          items.push({
+            id: "#" + String(skill.id).padStart(6, '0'),
+            skill: skill.skill
+          })
+        })
+        this.responseData = items;
+        return items;
+      })
+    },
+    getId() {
+      return this.$router.currentRoute._value.fullPath.split('/')[2];
+    }
+  },
+  created() {
+    this.getData()
+  },
+  data() {
+    return {
+      responseData: []
+    }
+  }
 }
 </script>
 

@@ -8,7 +8,7 @@
         <slot name="name"></slot>
       </div>
       <div class="id">
-        <slot name="id">{{id}}</slot>
+        <slot name="id"></slot>
       </div>
     </div>
   </div>
