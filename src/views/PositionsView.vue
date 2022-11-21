@@ -5,18 +5,43 @@ import PositionLabel from '../components/PositionLabel.vue'
 </script>
 
 <script>
-let items = [
-  {id: "#000001", name: "Должность"},
-  {id: "#000002", name: "Должность"},
-  {id: "#000003", name: "Должность"},
-  {id: "#000004", name: "Должность"}
-];
+import urlDb from '../../params.js';
+
 export default {
+  data() {
+    return {
+      responseData: []
+    }
+  },
   methods: {
     link(id, name) {
       let url = '/view_position/' + id.substring(1);
       this.$router.push({path: url, param: {id: id, position: name}});
+    },
+    getData() {
+      let url = urlDb + '/db_api/positions';
+
+      fetch(url, {
+        method: "get"
+      })
+      .then( res => {
+        return res.json()
+      })
+      .then(data => {
+        let items = [];
+        data.forEach(position => {
+          items.push({
+            id: "#" + String(position.id).padStart(6, '0'),
+            name: position.name
+          })
+        })
+        this.responseData = items;
+        return items;
+      })
     }
+  },
+  created() {
+    this.getData();
   }
 }
 </script>
@@ -30,7 +55,7 @@ export default {
     </Label>
     <InputNewPosition />
     <container>
-      <PositionLabel v-for="item in items"
+      <PositionLabel v-for="item in this.responseData"
                         :key="item.id"
                         @click="link(item.id, item.name)">
         <template #position>

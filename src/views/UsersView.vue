@@ -6,12 +6,12 @@ import UserLabel from '../components/UserLabel.vue'
 
 <script>
 import urlDb from '../../params';
-let url = urlDb + '/db_api/users';
 
 export default {
   data() {
     return {
-      responseData: []
+      responseData: [],
+      name: "dsdsds"
     }
   },
   methods: {
@@ -20,6 +20,7 @@ export default {
       this.$router.push({path: url, param: {id: id}});
     },
     getData() {
+      let url = urlDb + '/db_api/users';
       fetch(url, {
         method: "get"
       })
@@ -35,7 +36,6 @@ export default {
             active: user.active
           })
         })
-        console.log("FF", items)
         this.responseData = items;
         return items;
       })

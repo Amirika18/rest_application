@@ -17,7 +17,7 @@ let items = [
 
 items.forEach(item => {
   if (item.description.length > 50) {
-    item.description = item.description.substring(0, 45) + '...';
+    item.description = item.description.substring(0, 40) + '...';
   }
 })
 

@@ -15,6 +15,8 @@ import UserLabel from '../components/UserLabel.vue'
     <ProjectLabelProfile>
       <template #name>Project</template>
       <template #description>Description</template>
+      <template #start_date>12.02.2010</template>
+      <template #end_date>25.03.2013</template>
     </ProjectLabelProfile>
     <Label>
       <template #label>

@@ -46,4 +46,8 @@
   text-align: right;
   margin-right: 10px;
 }
+.description {
+  max-height: 40px;
+  white-space: nowrap;
+}
 </style>

@@ -28,7 +28,6 @@ export default {
             role: project.access
           })
         })
-        console.log("data", data)
         this.responseData = items;
         return items;
       })

@@ -5,30 +5,59 @@ import ProjectLabel from '../components/ProjectLabel.vue'
 </script>
 
 <script>
- let max_len = 185;
-
- let items = [
-   {name: "12345", description: "llllllllllllllll",
-     id: "#000001", date_start: "10.02.2002", date_end: "12.10.2013"},
-   {name: "12345", description: "Long Long LognLong Long LognLong Long LognLong Long LognLong Long LognLong Long LognLong Long LognLong Long LognLong Long LognLong Long LognLong Long LognLong Long LognLong Long LognLong Long Logn",
-     id: "#000002", date_start: "03.12.2019", date_end: "24.03.2020"},
-   {name: "12345", description: "llllllllllllllll llllllllllllllll llllllllllllllll",
-     id: "#000003", date_start: "19.11.2000", date_end: "12.11.2003"}
- ]
- items.forEach(item => {
-   item['period'] = item.date_start + '-' + item.date_end;
-   if (item.description.length > max_len) {
-     item.description = item.description.substring(0, 150) + '...';
-   }
- })
+import urlDb from '../../params.js';
 
 export default {
- methods: {
-   link(id) {
-     let url = '/view_project/' + id.substring(1);
-     this.$router.push({path: url, param: {id: id}});
-   }
- }
+   data() {
+     return {
+       responseData: []
+     }
+   },
+   methods: {
+     link(id) {
+       let url = '/view_project/' + id.substring(1);
+       this.$router.push({path: url, param: {id: id}});
+     },
+     getData() {
+       let url = urlDb + '/db_api/projects';
+       let maxLength = 185;
+
+       fetch(url, {
+         method: "get"
+       })
+       .then( res => {
+         return res.json()
+       })
+       .then(data => {
+         let items = [];
+         data.data.forEach(project => {
+           items.push({
+             id: "#" + String(project.id).padStart(6, '0'),
+             name: project.name,
+             description: project.description,
+             date_start: project.start,
+             date_end: project.end
+           })
+         })
+         items.forEach(item => {
+           if (item.description.length > maxLength) {
+             item.description = item.description.substring(0, 150) + '...';
+           }
+           if (!item.end) {
+             item["period"] = item.date_start + " - н.в.";
+           }
+           else {
+             item["period"] = item.date_start + " - " + item.date_end;
+           }
+         })
+         this.responseData = items;
+         return items;
+       })
+     }
+   },
+  created() {
+   this.getData();
+  }
 }
 </script>
 
@@ -41,7 +70,7 @@ export default {
     </Label>
     <InputNewProject />
     <container>
-      <ProjectLabel v-for="item in items"
+      <ProjectLabel v-for="item in this.responseData"
                     :key="item.id" @click="link(item.id)">
         <template #name>
           {{ item.name }}

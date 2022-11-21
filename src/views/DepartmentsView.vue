@@ -5,12 +5,45 @@ import DepartmentLabel from '../components/DepartmentLabel.vue'
 </script>
 
 <script>
-let items = [
-  {id: "#000001", name: "Отдел"},
-  {id: "#000002", name: "Отдел2"},
-  {id: "#000003", name: "Отдел3"},
-  {id: "#000004", name: "Отдел4"}
-];
+import urlDb from '../../params.js';
+
+export default {
+  data() {
+    return {
+      responseData: []
+    }
+  },
+  methods: {
+    link(id) {
+      let url = '/view_department/' + id.substring(1);
+      this.$router.push({path: url, param: {id: id}});
+    },
+    getData() {
+      let url = urlDb + '/db_api/departments';
+
+      fetch(url, {
+        method: "get"
+      })
+      .then( res => {
+        return res.json()
+      })
+      .then(data => {
+        let items = [];
+        data.forEach(department => {
+          items.push({
+            id: "#" + String(department.id).padStart(6, '0'),
+            name: department.name
+          })
+        })
+        this.responseData = items;
+        return items;
+      })
+    }
+  },
+  created() {
+    this.getData();
+  }
+}
 </script>
 
 <template>
@@ -22,7 +55,8 @@ let items = [
     </Label>
     <InputNewDepartment />
     <container>
-      <DepartmentLabel v-for="item in items"
+      <DepartmentLabel v-for="item in this.responseData"
+                       @click="link(item.id)"
                  :key="item.id">
         <template #department>
           {{ item.name }}

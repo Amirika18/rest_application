@@ -24,6 +24,10 @@
   align-items: center;
   padding: 10px;
 }
+.label:hover {
+  cursor: pointer;
+  background: var(--color-choose);
+}
 .data {
   display: grid;
   grid-template-columns: 7fr 1fr;

@@ -41,6 +41,7 @@
 .dates {
   display: grid;
   grid-template-columns: 1fr 1fr;
+  margin: 10px 20px;
 }
 div {
   font-size: 24px;

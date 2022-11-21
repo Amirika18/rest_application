@@ -47,6 +47,7 @@ export default {
         return res.json()
       })
       .then(data => {
+        console.log(data)
         let items = {
           id: "#" + String(data.data.id).padStart(6, '0'),
           name: data.data.surname + " " + data.data.name + " " + data.data.patronymic,
