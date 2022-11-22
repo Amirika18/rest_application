@@ -24,7 +24,7 @@ export default {
             .then(res=>res.json).then()
         name.value = "";
         description.value = "";
-        // this.$router.go(0);
+        this.$router.go(0);
       }
     },
     check(string) {

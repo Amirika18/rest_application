@@ -23,7 +23,7 @@
 .project {
   display: grid;
   grid-template-rows: 1fr 2fr;
-  height: 120px;
+  min-height: 120px;
   border-radius: 30px;
   border-style: none;
   background: var(--color-gray);

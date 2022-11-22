@@ -103,9 +103,6 @@ input, textarea{
   max-width: 180px;
 }
 textarea {
-  max-height: 140px;
-  max-width: 305px;
-  min-width: 304px;
-  min-height: 140px;
+  resize: none;
 }
 </style>

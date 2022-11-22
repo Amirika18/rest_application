@@ -1,13 +1,46 @@
 <script setup>
 </script>
 
+<script>
+import urlDb from "../../params.js";
+
+export default {
+  methods: {
+    addPosition() {
+      let position = document.getElementById("position-input");
+      if (this.check(position.value)) {
+        let url = urlDb + "/db_api/positions/";
+        fetch(url, {
+          method: "post",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            name: position.value,
+          })
+        })
+            .then(res=>res.json).then()
+        position.value = "";
+        this.$router.go(0);
+      }
+    },
+    check(string) {
+      let digits = /\d/.test(string);
+      let short = false;
+      if (string.length < 1) short = true;
+      return !digits && !short
+    }
+  }
+}
+</script>
+
 <template>
   <div class="container">
     <div id="name">Должность</div>
     <form class="form">
       <input type="text" id="position-input" name="position-input" required placeholder="Должность">
     </form>
-    <button type="submit">Добавить</button>
+    <button type="submit" @click="addPosition">Добавить</button>
   </div>
 </template>
 

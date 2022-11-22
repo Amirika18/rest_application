@@ -43,7 +43,7 @@ export default {
            if (item.description.length > maxLength) {
              item.description = item.description.substring(0, 150) + '...';
            }
-           if (!item.end) {
+           if (!item.date_end) {
              item["period"] = item.date_start + " - н.в.";
            }
            else {

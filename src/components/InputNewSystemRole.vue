@@ -1,13 +1,46 @@
 <script setup>
 </script>
 
+<script>
+import urlDb from "../../params.js";
+
+export default {
+  methods: {
+    addRole() {
+      let role = document.getElementById("role-input");
+      if (this.check(role.value)) {
+        let url = urlDb + "/db_api/system_roles/";
+        fetch(url, {
+          method: "post",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            name: role.value,
+          })
+        })
+            .then(res=>res.json).then()
+        role.value = "";
+        this.$router.go(0);
+      }
+    },
+    check(string) {
+      let digits = /\d/.test(string);
+      let short = false;
+      if (string.length < 1) short = true;
+      return !digits && !short
+    }
+  }
+}
+</script>
+
 <template>
   <div class="container">
     <div id="name">Роль</div>
     <form class="form">
       <input type="text" id="role-input" name="role-input" required placeholder="Роль в системе">
     </form>
-    <button type="submit">Добавить</button>
+    <button type="submit" @click="addRole">Добавить</button>
   </div>
 </template>
 

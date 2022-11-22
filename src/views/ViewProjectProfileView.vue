@@ -14,7 +14,7 @@ import UserLabel from '../components/UserLabel.vue'
     </EditLabel>
     <ProjectLabelProfile>
       <template #name>{{ this.name }}</template>
-      <template #description>{{ this.desciption }}</template>
+      <template #description>{{ this.description }}</template>
       <template #start_date>{{ this.start_date }}</template>
       <template #end_date>{{ this.end_date }}</template>
     </ProjectLabelProfile>

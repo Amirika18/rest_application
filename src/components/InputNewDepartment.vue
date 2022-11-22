@@ -1,13 +1,46 @@
 <script setup>
 </script>
 
+<script>
+import urlDb from "../../params.js";
+
+export default {
+  methods: {
+    addDepartment() {
+      let department = document.getElementById("department-input");
+      if (this.check(department.value)) {
+        let url = urlDb + "/db_api/departments/";
+        fetch(url, {
+          method: "post",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            name: department.value,
+          })
+        })
+            .then(res=>res.json).then()
+        department.value = "";
+        this.$router.go(0);
+      }
+    },
+    check(string) {
+      let digits = /\d/.test(string);
+      let short = false;
+      if (string.length < 1) short = true;
+      return !digits && !short
+    }
+  }
+}
+</script>
+
 <template>
   <div class="container">
     <div id="name">Отдел</div>
     <form class="form">
       <input type="text" id="department-input" name="department-input" required placeholder="Отдел">
     </form>
-    <button type="submit">Добавить</button>
+    <button type="submit" @click="addDepartment">Добавить</button>
   </div>
 </template>
 
