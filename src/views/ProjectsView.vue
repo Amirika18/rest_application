@@ -30,7 +30,7 @@ export default {
        })
        .then(data => {
          let items = [];
-         data.data.forEach(project => {
+          data.forEach(project => {
            items.push({
              id: "#" + String(project.id).padStart(6, '0'),
              name: project.name,

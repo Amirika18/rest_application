@@ -13,10 +13,10 @@ import UserLabel from '../components/UserLabel.vue'
       </template>
     </EditLabel>
     <ProjectLabelProfile>
-      <template #name>Project</template>
-      <template #description>Description</template>
-      <template #start_date>12.02.2010</template>
-      <template #end_date>25.03.2013</template>
+      <template #name>{{ this.name }}</template>
+      <template #description>{{ this.desciption }}</template>
+      <template #start_date>{{ this.start_date }}</template>
+      <template #end_date>{{ this.end_date }}</template>
     </ProjectLabelProfile>
     <Label>
       <template #label>
@@ -24,7 +24,7 @@ import UserLabel from '../components/UserLabel.vue'
       </template>
     </Label>
     <container>
-      <UserLabel v-for="item in items"
+      <UserLabel v-for="item in this.responseData"
                  :key="item.id"
                  @click="link(item.id)">
         <template #name>
@@ -39,14 +39,18 @@ import UserLabel from '../components/UserLabel.vue'
 </template>
 
 <script>
-let items = [
-  {id: "#000001", name: "Test", active: true},
-  {id: "#000002", name: "Test1", active: false},
-  {id: "#000003", name: "Test2", active: false},
-  {id: "#000004", name: "Test3", active: true}
-];
+import urlDb from '../../params.js';
 
 export default {
+  data() {
+    return {
+      name: "",
+      end_date: "",
+      start_date: "",
+      description: "",
+      responseData: []
+    }
+  },
   methods: {
     getId() {
       return this.$router.currentRoute._value.fullPath.split('/')[2];
@@ -54,7 +58,43 @@ export default {
     link(id) {
       let url = '/view_user/' + id.substring(1);
       this.$router.push({path: url, param: {id: id}});
+    },
+    getData() {
+      let id = this.getId();
+      let url = urlDb + '/db_api/projects/' + id;
+
+      fetch(url, {
+        method: "get"
+      })
+      .then( res => {
+        return res.json()
+      })
+      .then(data => {
+        let items = [];
+        this.name = data.project.name;
+        this.description = data.project.description;
+        this.start_date = "C " + data.project.start;
+        if (!data.project.end) {
+          this.end_date = "По н.в."
+        }
+        else {
+          this.end_date = "По " + data.project.end;
+        }
+
+        data.users.forEach(user => {
+          items.push({
+            id: "#" + String(user.id).padStart(6, '0'),
+            name: user.surname + " " + user.name + " " + user.patronymic
+          })
+        })
+
+        this.responseData = items;
+        return items;
+      })
     }
+  },
+  created() {
+    this.getData()
   }
 }
 </script>

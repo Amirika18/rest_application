@@ -23,7 +23,7 @@ export default {
             patronymic: patronymic.value
           })
         })
-        .then(res=>res.json).then(console.log)
+        .then(res=>res.json).then()
         name.value = "";
         surname.value = "";
         patronymic.value = "";

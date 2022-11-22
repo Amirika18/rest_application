@@ -7,9 +7,9 @@
       <div class="name">
         <slot name="name"></slot>
       </div>
-      <div class="description">
-        <slot name="description"></slot>
-      </div>
+<!--      <div class="description">-->
+<!--        <slot name="description"></slot>-->
+<!--      </div>-->
       <div class="id">
         <slot name="id"></slot>
       </div>

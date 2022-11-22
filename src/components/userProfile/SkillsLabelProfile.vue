@@ -30,7 +30,7 @@ export default {
       })
       .then(data => {
         let items = [];
-        data.data.forEach(skill => {
+        data.forEach(skill => {
           items.push({
             id: "#" + String(skill.id).padStart(6, '0'),
             skill: skill.skill

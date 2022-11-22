@@ -1,6 +1,42 @@
 <script setup>
 </script>
 
+<script>
+import urlDb from "../../params.js";
+
+export default {
+  methods: {
+    addSkill() {
+      let name = document.getElementById("skill-input");
+      let description = document.getElementById("description-input");
+      if (this.check(name.value) && this.check(description.value)) {
+        let url = urlDb + "/db_api/skills/";
+        fetch(url, {
+          method: "post",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            name: name.value,
+            description: description.value,
+          })
+        })
+            .then(res=>res.json).then()
+        name.value = "";
+        description.value = "";
+        // this.$router.go(0);
+      }
+    },
+    check(string) {
+      let digits = /\d/.test(string);
+      let short = false;
+      if (string.length < 1) short = true;
+      return !digits && !short
+    }
+  }
+}
+</script>
+
 <template>
   <div class="container">
     <div id="name">Навык</div>
@@ -8,7 +44,7 @@
       <input type="text" id="skill-input" name="skill-input" required placeholder="Навык">
       <input type="text" id="description-input" name="description-input" required placeholder="Описание">
     </form>
-    <button type="submit">Добавить</button>
+    <button type="submit" @click="addSkill">Добавить</button>
   </div>
 </template>
 

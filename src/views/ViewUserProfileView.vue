@@ -47,12 +47,11 @@ export default {
         return res.json()
       })
       .then(data => {
-        console.log(data)
         let items = {
-          id: "#" + String(data.data.id).padStart(6, '0'),
-          name: data.data.surname + " " + data.data.name + " " + data.data.patronymic,
-          department: data.data.department,
-          position: data.data.position
+          id: "#" + String(data.id).padStart(6, '0'),
+          name: data.surname + " " + data.name + " " + data.patronymic,
+          department: data.department,
+          position: data.position
         };
         this.responseData = items;
         return items;

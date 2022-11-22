@@ -84,6 +84,12 @@ const router = createRouter({
       name: 'view_position',
       replace: true,
       component: () => import('../views/ViewPositionProfileView.vue')
+    },
+    {
+      path: '/view_department/:id',
+      name: 'view_department',
+      replace: true,
+      component: () => import('../views/ViewDepartmentProfileView.vue')
     }
   ]
 })

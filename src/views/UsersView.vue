@@ -10,8 +10,7 @@ import urlDb from '../../params';
 export default {
   data() {
     return {
-      responseData: [],
-      name: "dsdsds"
+      responseData: []
     }
   },
   methods: {
@@ -29,7 +28,7 @@ export default {
       })
       .then(data => {
         let items = [];
-        data.data.forEach(user => {
+        data.forEach(user => {
           items.push({
             id: "#" + String(user.id).padStart(6, '0'),
             name: user.surname + " " + user.name + " " + user.patronymic,
