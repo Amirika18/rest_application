@@ -6,9 +6,6 @@
     <div>
       <slot name="label"></slot>
     </div>
-    <div class="icon" @click="editView">
-      ✎
-    </div>
   </div>
 </template>
 
@@ -17,13 +14,6 @@ export default {
   methods: {
     backView() {
       this.$router.back();
-    },
-    editView() {
-      let url = this.$router.currentRoute._value.fullPath;
-      let id = url.split('/')[2];
-      let path = url.split('/')[1].split('_')[1];
-      let fullPath = "/edit_" + path + "/" + id;
-      this.$router.push({path: fullPath, param: {id: id}});
     }
   }
 }

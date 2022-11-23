@@ -90,6 +90,12 @@ const router = createRouter({
       name: 'view_department',
       replace: true,
       component: () => import('../views/ViewDepartmentProfileView.vue')
+    },
+    {
+      path: '/edit_user/:id',
+      name: 'edit_user',
+      replace: true,
+      component: () => import('../views/EditUserProfileView.vue')
     }
   ]
 })
