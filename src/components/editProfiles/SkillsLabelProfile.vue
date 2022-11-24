@@ -36,35 +36,44 @@ export default {
       fetch(url, {
         method: "get"
       })
-      .then(res => {
-        return res.json()
-      })
-      .then(data => {
-        let items = [];
-        data.forEach(skill => {
-          items.push({
-            id: String(skill.skill_id).padStart(6, '0'),
-            skill: skill.skill
+          .then(res => {
+            return res.json()
           })
-        })
-        this.responseData = items;
-        return items;
+          .then(data => {
+            let items = [];
+            data.forEach(skill => {
+              items.push({
+                id: String(skill.skill_id).padStart(6, '0'),
+                skill: skill.skill
+              })
+            })
+            this.responseData = items;
+            let url_skills = urlDb + "/db_api/skills"
+            fetch(url_skills, {method: "get"})
+                .then( res => {return res.json()})
+                .then(data => {
+                  let items = [];
+                  data.forEach(skill => {
+                    items.push({
+                      id: String(skill.id).padStart(6, '0'),
+                      name: skill.name
+                    })
+                  })
+                  this.skills = this.changeList(this.responseData, items);
+                  return items;
+                })
       })
-
-      let url_skills = urlDb + "/db_api/skills"
-      fetch(url_skills, {method: "get"})
-      .then( res => {return res.json()})
-      .then(data => {
-        let items = [];
-        data.forEach(skill => {
-          items.push({
-            id: String(skill.id).padStart(6, '0'),
-            name: skill.name
-          })
+    },
+    changeList(userSkills, allSkills) {
+      let availableSkills = [];
+      allSkills.forEach(skill => {
+        let check = false;
+        userSkills.forEach(user => {
+          if (skill.id === user.id) check = true;
         })
-        this.skills = items;
-        return items;
+        if (!check) availableSkills.push(skill);
       })
+      return availableSkills
     },
     getId() {
       return this.$router.currentRoute._value.fullPath.split('/')[2];
@@ -79,6 +88,11 @@ export default {
           })
         }
         else {
+          this.skills.push({
+            id: String(item.id),
+            name: item.skill
+          });
+
           if (this.addSkills.has(item.id)) {
             this.addSkills.delete(item.id);
           }
@@ -94,7 +108,7 @@ export default {
       this.$emit('update-data', this.deleteSkills, this.addSkills);
     },
     addSkill() {
-      const skill =document.getElementById("new_skill");
+      const skill = document.getElementById("new_skill");
       let id = skill.value;
       if (id !== ""){
         let isExist = false;
@@ -110,7 +124,17 @@ export default {
             id: String(id),
             skill: skillValue
           })
+
+          let tempArr = [];
+          this.skills.forEach(skill => {
+            if (id !== skill.id) {
+              tempArr.push(skill);
+            }
+          })
+          this.skills = tempArr;
+          console.log(this.skills)
         }
+
         if (this.deleteSkills.has(id)) {
           this.deleteSkills.delete(id);
         }
@@ -121,9 +145,6 @@ export default {
         }
       }
       this.$emit('update-data', this.deleteSkills, this.addSkills);
-    },
-    returnData() {
-      return this.deleteSkills
     }
   },
   created() {

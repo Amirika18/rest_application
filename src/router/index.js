@@ -96,6 +96,18 @@ const router = createRouter({
       name: 'edit_user',
       replace: true,
       component: () => import('../views/EditUserProfileView.vue')
+    },
+    {
+      path: '/edit_skill/:id',
+      name: 'edit_skill',
+      replace: true,
+      component: () => import('../views/EditSkillProfileView.vue')
+    },
+    {
+      path: '/edit_project/:id',
+      name: 'edit_project',
+      replace: true,
+      component: () => import('../views/EditProjectProfileView.vue')
     }
   ]
 })

@@ -4,6 +4,7 @@ import EditUserInformation from '../components/editProfiles/EditUserInformation.
 import ProjectInformation from '../components/userProfile/ProjectInformation.vue'
 import SkillsLabelProfile from '../components/editProfiles/SkillsLabelProfile.vue'
 import SaveButton from '../components/editProfiles/SaveButton.vue'
+import DeleteButton from '../components/editProfiles/DeleteButton.vue'
 </script>
 
 <template>
@@ -16,8 +17,11 @@ import SaveButton from '../components/editProfiles/SaveButton.vue'
     <EditUserInformation />
     <ProjectInformation />
     <SkillsLabelProfile v-bind="searchProps" @update-data="updateSkills"/>
+    <DeleteButton @click="del">
+      <template #label>{{ this.buttonTextDelete }}</template>
+    </DeleteButton>
     <SaveButton @click="save">
-      <template #label>Сохранить</template>
+      <template #label>{{ this.buttonTextSave }}</template>
     </SaveButton>
   </div>
 </template>
@@ -36,7 +40,9 @@ export default {
         position: ""
       },
       deleteSkills: new Set(),
-      addSkills: new Set()
+      addSkills: new Set(),
+      buttonTextSave: "Сохранить",
+      buttonTextDelete: "Удалить"
     }
   },
   name: "EditUserProfileView",
@@ -44,6 +50,44 @@ export default {
     save() {
       this.getActualData();
       let userData = this.userdata;
+      let deleted = this.deleteSkills;
+      let added = this.addSkills;
+
+      let id = this.getId();
+      let url = urlDb + "/db_api/users/" + id + "/edit";
+      fetch(url, {
+        method: "post",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          user: userData,
+          del: Array.from(deleted),
+          add: Array.from(added)
+        })
+      });
+
+      this.buttonTextSave = "Загрузка..."
+      setTimeout(() => this.$router.go(-1), 1000);
+    },
+    del() {
+      let id = this.getId();
+      let url = urlDb + "/db_api/users/" + id + "/delete";
+      let send = confirm("Вы уверены, что хотите удалить пользователя?");
+      if (send) {
+        fetch(url, {
+          method: "post",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            id: id
+          })
+        });
+
+        this.buttonTextDelete = "Загрузка..."
+        setTimeout(() => this.$router.go(-2), 1000);
+      }
     },
     getId() {
       return this.$router.currentRoute._value.fullPath.split('/')[2];
@@ -51,7 +95,6 @@ export default {
     updateSkills(deleteSkills, addSkills) {
       this.deleteSkills = deleteSkills;
       this.addSkills = addSkills;
-      console.log(deleteSkills, addSkills)
     },
     getUserdata() {
       let id = this.getId();
