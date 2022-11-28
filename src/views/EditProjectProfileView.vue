@@ -3,6 +3,7 @@ import EditLabel from '../components/editProfiles/EditLabel.vue'
 import SaveButton from '../components/editProfiles/SaveButton.vue'
 import DeleteButton from '../components/editProfiles/DeleteButton.vue'
 import DeleteUserLabel from '../components/editProfiles/DeleteUserLabel.vue'
+import EditProjectLabel from '../components/editProfiles/EditProjectLabel.vue'
 import Label from '../components/Label.vue'
 </script>
 
@@ -11,7 +12,7 @@ import Label from '../components/Label.vue'
     <EditLabel>
       <template #label>Редактировать проект</template>
     </EditLabel>
-
+    <EditProjectLabel></EditProjectLabel>
 
     <Label>
       <template #label>Команда</template>
@@ -95,6 +96,9 @@ export default {
       this.team = tempArr;
     },
     addUser() {
+      this.newRole = "";
+      this.newUser = "";
+
       const name = document.getElementById("user_input");
       const role = document.getElementById("role_input");
 
@@ -160,7 +164,7 @@ export default {
     },
     del() {
       let id = this.getId();
-      let url = urlDb + "/db_api/projects/" + id + "/edit";
+      let url = urlDb + "/db_api/projects/" + id + "/delete";
       let send = confirm("Вы уверены, что хотите удалить проект?");
 
       if (send) {
@@ -182,7 +186,16 @@ export default {
       return this.$router.currentRoute._value.fullPath.split('/')[2];
     },
     setData() {
+      const name = document.getElementById("name-input");
+      const description = document.getElementById("description-input");
+      const start = document.getElementById("start-date-input");
+      const end = document.getElementById("end-date-input");
 
+      console.log(this.name)
+      name.value = this.name;
+      description.value = this.description;
+      start.value = this.start_date;
+      end.value = this.end_date;
     },
     changeList(users, team) {
       let availableUsers = [];
@@ -217,6 +230,8 @@ export default {
         else {
           this.end_date = "По " + data.project.end;
         }
+
+        this.setData();
 
         data.users.forEach(user => {
           items.push({
@@ -270,11 +285,8 @@ export default {
       });
     }
   },
-  created() {
-    this.getData()
-  },
   mounted() {
-    this.setData();
+    this.getData();
   }
 }
 </script>

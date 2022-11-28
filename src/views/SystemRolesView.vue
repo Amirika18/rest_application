@@ -15,7 +15,7 @@ export default {
   },
   methods: {
     link(id) {
-      let url = '/view_system_role/' + id.substring(1);
+      let url = '/edit_system_role/' + id.substring(1);
       this.$router.push({path: url, param: {id: id}});
     },
     getData() {

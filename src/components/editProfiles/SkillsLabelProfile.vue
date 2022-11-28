@@ -108,6 +108,7 @@ export default {
       this.$emit('update-data', this.deleteSkills, this.addSkills);
     },
     addSkill() {
+      this.activeSkill = "";
       const skill = document.getElementById("new_skill");
       let id = skill.value;
       if (id !== ""){

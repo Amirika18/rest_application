@@ -2,7 +2,7 @@
 import EditLabel from '../components/EditLabel.vue'
 import Label from '../components/Label.vue'
 import ProjectLabelProfile from '../components/projectProfile/ProjectLabelProfile.vue'
-import UserLabel from '../components/UserLabel.vue'
+import UserLabel from '../components/projectProfile/UserLabel.vue'
 </script>
 
 <template>
@@ -30,8 +30,8 @@ import UserLabel from '../components/UserLabel.vue'
         <template #name>
           {{ item.name }}
         </template>
-        <template #id>
-          {{ item.id }}
+        <template #role>
+          {{ item.role }}
         </template>
       </UserLabel>
     </container>
@@ -84,7 +84,8 @@ export default {
         data.users.forEach(user => {
           items.push({
             id: "#" + String(user.id).padStart(6, '0'),
-            name: user.surname + " " + user.name + " " + user.patronymic
+            name: user.surname + " " + user.name + " " + user.patronymic,
+            role: user.role
           })
         })
 
