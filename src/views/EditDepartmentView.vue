@@ -1,16 +1,16 @@
 <script setup>
 import EditLabel from '../components/editProfiles/EditLabel.vue'
+import EditOneInput from '../components/editProfiles/EditOneInput.vue'
 import SaveButton from '../components/editProfiles/SaveButton.vue'
 import DeleteButton from '../components/editProfiles/DeleteButton.vue'
-import EditRoleInput from '../components/editProfiles/EditRoleInput.vue'
 </script>
 
 <template>
   <div>
     <EditLabel>
-      <template #label>Редактировать роль</template>
+      <template #label>Редактирование отдела</template>
     </EditLabel>
-    <EditRoleInput></EditRoleInput>
+    <EditOneInput></EditOneInput>
     <DeleteButton @click="del">
       <template #label>{{ this.delText }}</template>
     </DeleteButton>
@@ -24,19 +24,19 @@ import EditRoleInput from '../components/editProfiles/EditRoleInput.vue'
 import urlDb from '../../params.js';
 
 export default {
+  name: "EditDepartmentView",
   data() {
     return {
       saveText: "Сохранить",
       delText: "Удалить",
-      role: ""
+      department: ""
     }
   },
-  name: "EditSystemRoleView",
   methods: {
     del() {
       let id = this.getId();
-      let url = urlDb + "/db_api/system_roles/" + id + "/delete";
-      let send = confirm("Вы уверены, что хотите удалить роль?");
+      let url = urlDb + "/db_api/departments/" + id + "/delete";
+      let send = confirm("Вы уверены, что хотите удалить отдел?");
 
       if (send) {
         fetch(url, {
@@ -51,7 +51,7 @@ export default {
         .then(res => {
           if (res.ok) {
             this.delText = "Загрузка..."
-            setTimeout(() => this.$router.go(-1), 1000);
+            setTimeout(() => this.$router.go(-2), 1000);
           }
           else if (res.status === 404) {
             alert("Not found")
@@ -62,10 +62,10 @@ export default {
     },
     save() {
       let id = this.getId();
-      let url = urlDb + '/db_api/system_roles/' + id + '/edit';
+      let url = urlDb + '/db_api/departments/' + id + '/edit';
 
-      const role = document.getElementById("role_input");
-      this.role = role.value;
+      const department = document.getElementById("input");
+      this.department = department.value;
 
       fetch(url, {
         method: "post",
@@ -73,7 +73,7 @@ export default {
           "Content-Type": "application/json"
         },
         body: JSON.stringify({
-          name: this.role
+          name: this.department
         })
       })
       .then(res => {
@@ -92,18 +92,17 @@ export default {
     },
     setData() {
       let id = this.getId();
-      let url = urlDb + '/db_api/system_roles/' + id;
+      let url = urlDb + '/db_api/departments/' + id;
 
       fetch(url, {
         method: 'get'
       })
       .then(res => res.json())
       .then(data => {
-        console.log(data)
-        const role = document.getElementById("role_input");
+        const department = document.getElementById("input");
 
-        role.value = data.system_role.name;
-        this.role = data.system_role.name;
+        department.value = data.department.name;
+        this.department = data.department.name;
       })
     }
   },

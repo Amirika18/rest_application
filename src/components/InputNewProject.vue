@@ -75,6 +75,9 @@ button {
   background: var(--color-gray);
   border-style: none;
 }
+button:hover {
+  cursor: pointer;
+}
 .form {
   padding: 5px;
   display: grid;

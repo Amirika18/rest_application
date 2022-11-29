@@ -36,10 +36,12 @@ export default {
   flex-direction: row;
 }
 .label:hover {
+  cursor: pointer;
+  background: var(--color-choose);
 }
 .data {
-  display: grid;
-  grid-template-columns: 5fr 3fr;
+  display: flex;
+  flex-direction: row;
   width: 100%;
 }
 .name {
@@ -52,5 +54,7 @@ export default {
   color: var(--color-text-light);
   text-align: right;
   margin-right: 10px;
+  position: absolute;
+  right: 0;
 }
 </style>

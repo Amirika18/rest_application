@@ -59,8 +59,11 @@ export default {
           })
     },
     save() {
-      let skill = this.skillName;
-      let description = this.description;
+      const skill = document.getElementById("skill_input");
+      const description = document.getElementById("description_input");
+
+      this.skillName = skill.value;
+      this.description = description.value;
       let id = this.getId();
       let url = urlDb + "/db_api/skills/" + id + "/edit";
       fetch(url, {
@@ -69,13 +72,20 @@ export default {
           "Content-Type": "application/json"
         },
         body: JSON.stringify({
-          skill: skill,
-          description: description
+          name: this.skillName,
+          description: this.description
         })
-      });
-
-      this.buttonTextSave = "Загрузка..."
-      setTimeout(() => this.$router.go(-1), 1000);
+      })
+      .then(res => {
+        if (res.ok) {
+          this.buttonTextSave = "Загрузка..."
+          setTimeout(() => this.$router.go(-1), 1000);
+        }
+        else if (res.status === 404) {
+          alert("Что-то пошло не так :(")
+        }
+      })
+      .catch(err => alert(err));
     },
     del() {
       let id = this.getId();
@@ -90,10 +100,17 @@ export default {
           body: JSON.stringify({
             id: id
           })
-        });
-
-        this.buttonTextDelete = "Загрузка..."
-        setTimeout(() => this.$router.go(-2), 1000);
+        })
+        .then(res => {
+          if (res.ok) {
+            this.buttonTextDelete = "Загрузка..."
+            setTimeout(() => this.$router.go(-2), 1000);
+          }
+          else if (res.status === 404) {
+            alert("Что-то пошло не так :(")
+          }
+        })
+        .catch(err => alert(err));
       }
     },
   },

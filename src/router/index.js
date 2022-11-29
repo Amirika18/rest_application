@@ -116,6 +116,18 @@ const router = createRouter({
       component: () => import('../views/EditSystemRoleView.vue')
     },
     {
+      path: '/edit_position/:id',
+      name: 'edit_position',
+      replace: true,
+      component: () => import('../views/EditPositionView.vue')
+    },
+    {
+      path: '/edit_department/:id',
+      name: 'edit_department',
+      replace: true,
+      component: () => import('../views/EditDepartmentView.vue')
+    },
+    {
       path: '/edit_project_role/:id',
       name: 'edit_project_role',
       replace: true,

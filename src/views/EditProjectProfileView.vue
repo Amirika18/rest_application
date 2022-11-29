@@ -146,8 +146,30 @@ export default {
       }
     },
     save() {
+      const name = document.getElementById("name-input");
+      const description = document.getElementById("description-input");
+      const start = document.getElementById("start-date-input");
+      const end = document.getElementById("end-date-input");
+
+      this.name = name.value;
+      this.description = description.value;
+      this.start_date = start.value;
+      this.end_date = end.value;
+
       let id = this.getId();
       let url = urlDb + "/db_api/projects/" + id + "/edit";
+
+      let adding = [];
+      let tempArr = Array.from(this.addUsers);
+      for (let i = 0; i< tempArr.length; i++ ) {
+        this.team.forEach(user => {
+          if (user.id === tempArr[i])
+            adding.push({
+              id: tempArr[i],
+              role: user.id_role
+            })
+        })
+      }
 
       fetch(url, {
         method: "post",
@@ -155,12 +177,29 @@ export default {
           "Content-Type": "application/json"
         },
         body: JSON.stringify({
-          // body
+          name: this.name,
+          description: this.description,
+          end: this.end_date,
+          start: this.start_date,
+          del: Array.from(this.deleteUsers).map(item => {
+            return item.substring(1)
+          }),
+          add: adding,
+          upd: this.team.map(item => {
+            return item.id.substring(1)
+          })
         })
-      });
-
-      this.buttonTextSave = "Загрузка..."
-      setTimeout(() => this.$router.go(-1), 1000);
+      })
+      .then(res => {
+        if (res.ok) {
+          this.buttonTextSave = "Загрузка..."
+          setTimeout(() => this.$router.go(-1), 1000);
+        }
+        else if (res.status === 404) {
+          alert("Что-то пошло не так :(")
+        }
+      })
+      .catch(err => alert(err));
     },
     del() {
       let id = this.getId();
@@ -176,10 +215,17 @@ export default {
           body: JSON.stringify({
             id: id
           })
-        });
-
-        this.buttonTextDelete = "Загрузка..."
-        setTimeout(() => this.$router.go(-2), 1000);
+        })
+        .then(res => {
+          if (res.ok) {
+            this.buttonTextDelete = "Загрузка..."
+            setTimeout(() => this.$router.go(-2), 1000);
+          }
+          else if (res.status === 404) {
+            alert("Что-то пошло не так :(")
+          }
+        })
+        .catch(err => alert(err));
       }
     },
     getId() {
@@ -191,11 +237,11 @@ export default {
       const start = document.getElementById("start-date-input");
       const end = document.getElementById("end-date-input");
 
-      console.log(this.name)
       name.value = this.name;
       description.value = this.description;
-      start.value = this.start_date;
-      end.value = this.end_date;
+      start.value = this.start_date.split('.').reverse().join('-');
+      if (this.end_date)
+        end.value = this.end_date.split('.').reverse().join('-');
     },
     changeList(users, team) {
       let availableUsers = [];
@@ -206,7 +252,6 @@ export default {
         })
         if (!check) availableUsers.push(user);
       })
-      console.log(users, team)
       return availableUsers
     },
     getData() {
@@ -223,16 +268,10 @@ export default {
         let items = [];
         this.name = data.project.name;
         this.description = data.project.description;
-        this.start_date = "C " + data.project.start;
-        if (!data.project.end) {
-          this.end_date = "По н.в."
-        }
-        else {
-          this.end_date = "По " + data.project.end;
-        }
+        this.start_date = data.project.start;
+        this.end_date = data.project.end;
 
         this.setData();
-
         data.users.forEach(user => {
           items.push({
             id: "#" + String(user.id).padStart(6, '0'),
