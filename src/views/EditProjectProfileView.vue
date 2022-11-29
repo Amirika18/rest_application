@@ -186,7 +186,10 @@ export default {
           }),
           add: adding,
           upd: this.team.map(item => {
-            return item.id.substring(1)
+            return {
+              id: item.id.substring(1),
+              id_role: item.id_role
+            }
           })
         })
       })
