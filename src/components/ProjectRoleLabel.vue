@@ -1,15 +1,11 @@
 <script setup>
 </script>
 
-<script>
-export default {
-}
-</script>
 <template>
   <div class="label">
     <div class="data">
-      <div class="name">
-        <slot name="name"></slot>
+      <div class="role">
+        <slot name="role"></slot>
       </div>
       <div class="id">
         <slot name="id"></slot>
@@ -36,7 +32,7 @@ export default {
   display: grid;
   grid-template-columns: 7fr 1fr;
 }
-.name {
+.role {
   font-size: 24px;
   color: var(--color-text);
   margin-left: 10px;

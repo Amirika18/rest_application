@@ -5,12 +5,46 @@ import UserLabel from '../components/UserLabel.vue'
 </script>
 
 <script>
-  var items = [
-    {id: "#000001", name: "Test", active: true},
-    {id: "#000002", name: "Test1", active: false},
-    {id: "#000003", name: "Test2", active: false},
-    {id: "#000004", name: "Test3", active: true}
-  ];
+import urlDb from '../../params';
+
+export default {
+  data() {
+    return {
+      responseData: []
+    }
+  },
+  methods: {
+    link(id) {
+      let url = '/view_user/' + id.substring(1);
+      this.$router.push({path: url, param: {id: id}});
+    },
+    getData() {
+      let url = urlDb + '/db_api/users';
+      fetch(url, {
+        method: "get"
+      })
+      .then( res => {
+        return res.json()
+      })
+      .then(data => {
+        let items = [];
+        data.forEach(user => {
+          items.push({
+            id: "#" + String(user.id).padStart(6, '0'),
+            name: user.surname + " " + user.name + " " + user.patronymic,
+            active: user.active
+          })
+        })
+        this.responseData = items;
+        return items;
+      })
+    }
+  },
+  created() {
+    this.getData()
+  },
+  beforeCreate() {}
+}
 </script>
 
 <template>
@@ -22,9 +56,9 @@ import UserLabel from '../components/UserLabel.vue'
    </Label>
    <InputNewUser />
    <container>
-     <UserLabel v-for="item in items"
+     <UserLabel v-for="item in this.responseData"
                 :key="item.id"
-                :class="{'inactive' : !item.active}">
+                :class="{'inactive' : !item.active}" @click="link(item.id)">
        <template #name>
          {{ item.name }}
        </template>

@@ -7,9 +7,9 @@
       <div class="name">
         <slot name="name"></slot>
       </div>
-      <div class="description">
-        <slot name="description"></slot>
-      </div>
+<!--      <div class="description">-->
+<!--        <slot name="description"></slot>-->
+<!--      </div>-->
       <div class="id">
         <slot name="id"></slot>
       </div>
@@ -27,6 +27,10 @@
   align-items: center;
   padding: 10px;
 }
+.label:hover {
+  cursor: pointer;
+  background: var(--color-choose);
+}
 .data {
   display: grid;
   grid-template-columns: 1fr 6fr 1fr;
@@ -41,5 +45,9 @@
   color: var(--color-text-light);
   text-align: right;
   margin-right: 10px;
+}
+.description {
+  max-height: 40px;
+  white-space: nowrap;
 }
 </style>

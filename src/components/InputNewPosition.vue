@@ -11,11 +11,10 @@ export default {
     }
   },
   methods: {
-    addSkill() {
-      let name = document.getElementById("skill-input");
-      let description = document.getElementById("description-input");
-      if (this.check(name.value) && this.check(description.value)) {
-        let url = urlDb + "/db_api/skills/";
+    addPosition() {
+      let position = document.getElementById("position-input");
+      if (this.check(position.value)) {
+        let url = urlDb + "/db_api/positions/";
         if (!this.isActive) {
           fetch(url, {
             method: "post",
@@ -23,13 +22,11 @@ export default {
               "Content-Type": "application/json"
             },
             body: JSON.stringify({
-              name: name.value,
-              description: description.value,
+              name: position.value,
             })
           })
               .then(res=>res.json).then()
-          name.value = "";
-          description.value = "";
+          position.value = "";
           this.$router.go(0);
           this.isActive = true;
         }
@@ -47,12 +44,11 @@ export default {
 
 <template>
   <div class="container">
-    <div id="name">Навык</div>
+    <div id="name">Должность</div>
     <form class="form">
-      <input type="text" id="skill-input" name="skill-input" required placeholder="Навык">
-      <input type="text" id="description-input" name="description-input" required placeholder="Описание">
+      <input type="text" id="position-input" name="position-input" required placeholder="Должность">
     </form>
-    <button type="submit" @click="addSkill">Добавить</button>
+    <button type="submit" @click="addPosition">Добавить</button>
   </div>
 </template>
 
@@ -65,7 +61,7 @@ export default {
 }
 .form {
   display: grid;
-  grid-template-columns: 1fr 2fr;
+  grid-template-columns: 1fr;
   background: var(--color-gray);
   height: 60px;
   padding: 5px;
@@ -76,9 +72,6 @@ export default {
   text-align: center;
   padding: 10px;
   background: var(--color-gray);
-}
-#skill-input {
-  max-width: 200px;
 }
 button {
   font-size: 24px;

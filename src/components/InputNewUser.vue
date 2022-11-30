@@ -1,6 +1,55 @@
 <script setup>
 </script>
 
+<script>
+import urlDb from "../../params.js";
+
+export default {
+  data() {
+    return {
+      isActive: false
+    }
+  },
+  methods: {
+    addUser() {
+      let name = document.getElementById("name-input");
+      let surname = document.getElementById("surname-input");
+      let patronymic = document.getElementById("patronymic-input");
+      if (this.check(name.value) && this.check(surname.value) && this.check(patronymic.value)) {
+        let url = urlDb + "/db_api/users/";
+        if (!this.isActive) {
+          fetch(url, {
+            method: "post",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+              name: name.value,
+              surname: surname.value,
+              patronymic: patronymic.value
+            })
+          })
+          .then(res=>res.json).then()
+
+          name.value = "";
+          surname.value = "";
+          patronymic.value = "";
+          this.$router.go(0);
+
+          this.isActive = true;
+        }
+      }
+    },
+    check(string) {
+      let digits = /\d/.test(string);
+      let short;
+      if (string.length < 2) short = true;
+      return !digits && !short
+    }
+  }
+}
+</script>
+
 <template>
   <div class="container">
     <div id="label">ФИО</div>
@@ -9,7 +58,7 @@
       <input type="text" id="name-input" name="name-input" required placeholder="Имя">
       <input type="text" id="patronymic-input" name="patronymic-input" required placeholder="Отчество">
     </form>
-    <button type="submit">Добавить</button>
+    <button type="submit" @click="addUser()">Добавить</button>
   </div>
 </template>
 
@@ -42,6 +91,10 @@ button {
   margin-left: 10px;
   background: var(--color-gray);
   border-style: none;
+}
+button:hover {
+  cursor: pointer;
+  background: var(--color-choose);
 }
 input[type="text"] {
   margin: 5px;
