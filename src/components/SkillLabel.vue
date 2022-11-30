@@ -7,9 +7,6 @@
       <div class="name">
         <slot name="name"></slot>
       </div>
-<!--      <div class="description">-->
-<!--        <slot name="description"></slot>-->
-<!--      </div>-->
       <div class="id">
         <slot name="id"></slot>
       </div>
@@ -33,7 +30,7 @@
 }
 .data {
   display: grid;
-  grid-template-columns: 1fr 6fr 1fr;
+  grid-template-columns: 6fr 2fr;
 }
 .name {
   font-size: 24px;

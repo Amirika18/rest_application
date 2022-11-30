@@ -82,6 +82,10 @@ button {
   background: var(--color-gray);
   border-style: none;
 }
+button:hover {
+  cursor: pointer;
+  background: var(--color-choose);
+}
 input[type="text"] {
   margin: 5px;
   background: var(--color-white);
