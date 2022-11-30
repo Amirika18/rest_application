@@ -5,6 +5,11 @@
 import urlDb from "../../params.js";
 
 export default {
+  data() {
+    return {
+      isActive: false
+    }
+  },
   methods: {
     addProject() {
       let name = document.getElementById("name-input");
@@ -13,24 +18,27 @@ export default {
       let description = document.getElementById("description-input");
       if (this.check(name.value) && this.check(description.value)) {
         let url = urlDb + "/db_api/projects/";
-        fetch(url, {
-          method: "post",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify({
-            name: name.value,
-            description: description.value,
-            start: start.value,
-            end: end.value
+        if (!this.isActive) {
+          fetch(url, {
+            method: "post",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+              name: name.value,
+              description: description.value,
+              start: start.value,
+              end: end.value
+            })
           })
-        })
-            .then(res=>res.json).then()
-        name.value = "";
-        description.value = "";
-        start.value = "";
-        end.value = "";
-        this.$router.go(0);
+              .then(res=>res.json).then()
+          name.value = "";
+          description.value = "";
+          start.value = "";
+          end.value = "";
+          this.$router.go(0);
+          this.isActive = true;
+        }
       }
     },
     check(string) {

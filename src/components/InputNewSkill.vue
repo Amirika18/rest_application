@@ -5,26 +5,34 @@
 import urlDb from "../../params.js";
 
 export default {
+  data() {
+    return {
+      isActive: false
+    }
+  },
   methods: {
     addSkill() {
       let name = document.getElementById("skill-input");
       let description = document.getElementById("description-input");
       if (this.check(name.value) && this.check(description.value)) {
         let url = urlDb + "/db_api/skills/";
-        fetch(url, {
-          method: "post",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify({
-            name: name.value,
-            description: description.value,
+        if (!this.isActive) {
+          fetch(url, {
+            method: "post",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+              name: name.value,
+              description: description.value,
+            })
           })
-        })
-            .then(res=>res.json).then()
-        name.value = "";
-        description.value = "";
-        this.$router.go(0);
+              .then(res=>res.json).then()
+          name.value = "";
+          description.value = "";
+          this.$router.go(0);
+          this.isActive = true;
+        }
       }
     },
     check(string) {

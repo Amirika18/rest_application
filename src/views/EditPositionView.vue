@@ -29,7 +29,8 @@ export default {
     return {
       saveText: "Сохранить",
       delText: "Удалить",
-      position: ""
+      position: "",
+      isActive: false
     }
   },
   methods: {
@@ -67,25 +68,28 @@ export default {
       const position = document.getElementById("input");
       this.position = position.value;
 
-      fetch(url, {
-        method: "post",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          name: this.position
+      if (!this.isActive) {
+        fetch(url, {
+          method: "post",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            name: this.position
+          })
         })
-      })
-      .then(res => {
-        if (res.ok) {
-          this.saveText = "Загрузка..."
-          setTimeout(() => this.$router.go(-1), 1000);
-        }
-        else if (res.status === 404) {
-          alert("Not found")
-        }
-      })
-      .catch(err => alert(err));
+        .then(res => {
+          if (res.ok) {
+            this.saveText = "Загрузка..."
+            setTimeout(() => this.$router.go(-1), 1000);
+          }
+          else if (res.status === 404) {
+            alert("Not found")
+          }
+        })
+        .catch(err => alert(err));
+      }
+      this.isActive = true;
     },
     getId() {
       return this.$router.currentRoute._value.fullPath.split('/')[2];

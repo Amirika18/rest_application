@@ -5,23 +5,31 @@
 import urlDb from "../../params.js";
 
 export default {
+  data() {
+    return {
+      isActive: false
+    }
+  },
   methods: {
     addPosition() {
       let position = document.getElementById("position-input");
       if (this.check(position.value)) {
         let url = urlDb + "/db_api/positions/";
-        fetch(url, {
-          method: "post",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify({
-            name: position.value,
+        if (!this.isActive) {
+          fetch(url, {
+            method: "post",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+              name: position.value,
+            })
           })
-        })
-            .then(res=>res.json).then()
-        position.value = "";
-        this.$router.go(0);
+              .then(res=>res.json).then()
+          position.value = "";
+          this.$router.go(0);
+          this.isActive = true;
+        }
       }
     },
     check(string) {

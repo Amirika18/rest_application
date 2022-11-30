@@ -5,23 +5,31 @@
 import urlDb from "../../params.js";
 
 export default {
+  data() {
+    return {
+      isActive: false
+    }
+  },
   methods: {
     addDepartment() {
       let department = document.getElementById("department-input");
       if (this.check(department.value)) {
         let url = urlDb + "/db_api/departments/";
-        fetch(url, {
-          method: "post",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify({
-            name: department.value,
+        if (!this.isActive) {
+          fetch(url, {
+            method: "post",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+              name: department.value,
+            })
           })
-        })
-            .then(res=>res.json).then()
-        department.value = "";
-        this.$router.go(0);
+              .then(res=>res.json).then()
+          department.value = "";
+          this.$router.go(0);
+          this.isActive = true;
+        }
       }
     },
     check(string) {

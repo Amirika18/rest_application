@@ -42,7 +42,8 @@ export default {
       deleteSkills: new Set(),
       addSkills: new Set(),
       buttonTextSave: "Сохранить",
-      buttonTextDelete: "Удалить"
+      buttonTextDelete: "Удалить",
+      isActive: false
     }
   },
   name: "EditUserProfileView",
@@ -55,20 +56,28 @@ export default {
 
       let id = this.getId();
       let url = urlDb + "/db_api/users/" + id + "/edit";
-      fetch(url, {
-        method: "post",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          user: userData,
-          del: Array.from(deleted),
-          add: Array.from(added)
-        })
-      });
 
-      this.buttonTextSave = "Загрузка..."
-      setTimeout(() => this.$router.go(-1), 1000);
+      if (!this.isActive) {
+        fetch(url, {
+          method: "post",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            user: userData,
+            del: Array.from(deleted),
+            add: Array.from(added)
+          })
+        })
+        .then(res => {
+          if (res.ok) {
+            this.buttonTextSave = "Загрузка..."
+            setTimeout(() => this.$router.go(-1), 1000);
+          }
+        });
+      }
+
+      this.isActive = true;
     },
     del() {
       let id = this.getId();
@@ -83,10 +92,13 @@ export default {
           body: JSON.stringify({
             id: id
           })
+        })
+        .then(res => {
+          if (res.ok) {
+            this.buttonTextDelete = "Загрузка..."
+            setTimeout(() => this.$router.go(-2), 1000);
+          }
         });
-
-        this.buttonTextDelete = "Загрузка..."
-        setTimeout(() => this.$router.go(-2), 1000);
       }
     },
     getId() {

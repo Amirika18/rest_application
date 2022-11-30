@@ -32,7 +32,8 @@ export default {
       skillName: "",
       description: "",
       buttonTextSave: "Сохранить",
-      buttonTextDelete: "Удалить"
+      buttonTextDelete: "Удалить",
+      isActive: false
     }
   },
   methods: {
@@ -66,26 +67,30 @@ export default {
       this.description = description.value;
       let id = this.getId();
       let url = urlDb + "/db_api/skills/" + id + "/edit";
-      fetch(url, {
-        method: "post",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          name: this.skillName,
-          description: this.description
+
+      if (!this.isActive) {
+        fetch(url, {
+          method: "post",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            name: this.skillName,
+            description: this.description
+          })
         })
-      })
-      .then(res => {
-        if (res.ok) {
-          this.buttonTextSave = "Загрузка..."
-          setTimeout(() => this.$router.go(-1), 1000);
-        }
-        else if (res.status === 404) {
-          alert("Что-то пошло не так :(")
-        }
-      })
-      .catch(err => alert(err));
+        .then(res => {
+          if (res.ok) {
+            this.buttonTextSave = "Загрузка..."
+            setTimeout(() => this.$router.go(-1), 1000);
+          }
+          else if (res.status === 404) {
+            alert("Что-то пошло не так :(")
+          }
+        })
+        .catch(err => alert(err));
+      }
+      this.isActive = true;
     },
     del() {
       let id = this.getId();

@@ -28,7 +28,8 @@ export default {
     return {
       saveText: "Сохранить",
       delText: "Удалить",
-      role: ""
+      role: "",
+      isActive: false
     }
   },
   name: "EditSystemRoleView",
@@ -47,10 +48,13 @@ export default {
           body: JSON.stringify({
             id: id
           })
+        })
+        .then(res => {
+          if (res.ok) {
+            this.delText = "Загрузка..."
+            setTimeout(() => this.$router.go(-1), 1000);
+          }
         });
-
-        this.delText = "Загрузка..."
-        setTimeout(() => this.$router.go(-1), 1000);
       }
     },
     save() {
@@ -60,18 +64,24 @@ export default {
       const role = document.getElementById("role_input");
       this.role = role.value;
 
-      fetch(url, {
-        method: "post",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          name: this.role
+      if (!this.isActive) {
+        fetch(url, {
+          method: "post",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            name: this.role
+          })
         })
-      });
-
-      this.saveText = "Загрузка..."
-      setTimeout(() => this.$router.go(-1), 1000);
+        .then(res => {
+          if (res.ok) {
+            this.saveText = "Загрузка..."
+            setTimeout(() => this.$router.go(-1), 1000);
+          }
+        });
+      }
+      this.isActive = true;
     },
     getId() {
       return this.$router.currentRoute._value.fullPath.split('/')[2];

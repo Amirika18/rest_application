@@ -5,6 +5,11 @@
 import urlDb from "../../params.js";
 
 export default {
+  data() {
+    return {
+      isActive: false
+    }
+  },
   methods: {
     addUser() {
       let name = document.getElementById("name-input");
@@ -12,22 +17,27 @@ export default {
       let patronymic = document.getElementById("patronymic-input");
       if (this.check(name.value) && this.check(surname.value) && this.check(patronymic.value)) {
         let url = urlDb + "/db_api/users/";
-        fetch(url, {
-          method: "post",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify({
-            name: name.value,
-            surname: surname.value,
-            patronymic: patronymic.value
+        if (!this.isActive) {
+          fetch(url, {
+            method: "post",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+              name: name.value,
+              surname: surname.value,
+              patronymic: patronymic.value
+            })
           })
-        })
-        .then(res=>res.json).then()
-        name.value = "";
-        surname.value = "";
-        patronymic.value = "";
-        this.$router.go(0);
+          .then(res=>res.json).then()
+
+          name.value = "";
+          surname.value = "";
+          patronymic.value = "";
+          this.$router.go(0);
+
+          this.isActive = true;
+        }
       }
     },
     check(string) {

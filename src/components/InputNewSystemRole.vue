@@ -5,23 +5,31 @@
 import urlDb from "../../params.js";
 
 export default {
+  data() {
+    return {
+      isActive: false
+    }
+  },
   methods: {
     addRole() {
       let role = document.getElementById("role-input");
       if (this.check(role.value)) {
         let url = urlDb + "/db_api/system_roles/";
-        fetch(url, {
-          method: "post",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify({
-            name: role.value,
+        if (!this.isActive) {
+          fetch(url, {
+            method: "post",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+              name: role.value,
+            })
           })
-        })
-            .then(res=>res.json).then()
-        role.value = "";
-        this.$router.go(0);
+          .then(res=>res.json).then()
+          role.value = "";
+          this.$router.go(0);
+          this.isActive = true;
+        }
       }
     },
     check(string) {

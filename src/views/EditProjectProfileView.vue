@@ -13,7 +13,6 @@ import Label from '../components/Label.vue'
       <template #label>Редактировать проект</template>
     </EditLabel>
     <EditProjectLabel></EditProjectLabel>
-
     <Label>
       <template #label>Команда</template>
     </Label>
@@ -70,7 +69,8 @@ export default {
       newUser: "",
       newRole: "",
       deleteUsers: new Set(),
-      addUsers: new Set()
+      addUsers: new Set(),
+      isActive: false
     }
   },
   methods: {
@@ -170,39 +170,41 @@ export default {
             })
         })
       }
-
-      fetch(url, {
-        method: "post",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          name: this.name,
-          description: this.description,
-          end: this.end_date,
-          start: this.start_date,
-          del: Array.from(this.deleteUsers).map(item => {
-            return item.substring(1)
-          }),
-          add: adding,
-          upd: this.team.map(item => {
-            return {
-              id: item.id.substring(1),
-              id_role: item.id_role
-            }
+      if (!this.isActive) {
+        fetch(url, {
+          method: "post",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            name: this.name,
+            description: this.description,
+            end: this.end_date,
+            start: this.start_date,
+            del: Array.from(this.deleteUsers).map(item => {
+              return item.substring(1)
+            }),
+            add: adding,
+            upd: this.team.map(item => {
+              return {
+                id: item.id.substring(1),
+                id_role: item.id_role
+              }
+            })
           })
         })
-      })
-      .then(res => {
-        if (res.ok) {
-          this.buttonTextSave = "Загрузка..."
-          setTimeout(() => this.$router.go(-1), 1000);
-        }
-        else if (res.status === 404) {
-          alert("Что-то пошло не так :(")
-        }
-      })
-      .catch(err => alert(err));
+        .then(res => {
+          if (res.ok) {
+            this.buttonTextSave = "Загрузка..."
+            setTimeout(() => this.$router.go(-1), 1000);
+          }
+          else if (res.status === 404) {
+            alert("Что-то пошло не так :(")
+          }
+        })
+        .catch(err => alert(err));
+      }
+      this.isActive = true;
     },
     del() {
       let id = this.getId();
