@@ -5,6 +5,7 @@
       <input id="login">
       <input id="password" type="password">
       <button type="submit" id="button" @click="sendData">Войти</button>
+      <label id="registration" @click="goRegister">Зарегестрироваться</label>
     </div>
   </div>
 </template>
@@ -38,10 +39,15 @@ export default {
           .then(res => {
             if (res.ok) {
               document.cookie = "user=" + login.value;
+              console.log("cuca  ", document.cookie)
+              this.$emit('login-status')
               this.$router.push("/users")
             }
             else console.log(res)
           })
+    },
+    goRegister() {
+      this.$router.push('/registration')
     }
   }
 }
@@ -49,8 +55,8 @@ export default {
 
 <style scoped>
 .login {
+  margin-top: 50px;
   font-size: 24px;
-  margin: auto;
   padding: 20px;
   height: 400px;
 
@@ -60,7 +66,6 @@ export default {
   align-items: center;
 }
 .form {
-  margin: auto;
   width: max-content;
   border-radius: 30px;
   padding: 20px;
@@ -72,8 +77,16 @@ export default {
   align-items: center;
   text-align: center;
 }
-#label, #login, #password, #button {
+#label, #login, #password, #button{
   margin: 10px 20px;
   font-size: 24px;
+}
+#registration {
+  font-size: 20px;
+  margin: 10px;
+}
+#registration:hover {
+  text-decoration: underline;
+  cursor: pointer;
 }
 </style>
