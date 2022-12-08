@@ -85,6 +85,7 @@ button {
 }
 button:hover {
   cursor: pointer;
+  background: var(--color-choose);
 }
 .form {
   padding: 5px;

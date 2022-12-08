@@ -79,6 +79,7 @@ export default {
     </div>
     <div class="information">
       <select v-model="department" id="department_input">
+        <option value="" disabled hidden>Депатамент</option>
         <option v-for="item in this.departments"
                 :value="item.id">
           {{ item.name }}
