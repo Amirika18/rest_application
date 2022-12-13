@@ -1,11 +1,18 @@
+#FROM node:18-alpine
+#WORKDIR /vue
+#COPY . .
+#EXPOSE 5173
+#CMD ["node", "index.js"]
+
+
 FROM node:lts-alpine as build-app
-WORKDIR /
+WORKDIR /vue
 COPY package*.json .
-RUN npm install
 COPY . .
+RUN npm install
 EXPOSE 5173
 #ENV HOST=0.0.0.0
-RUN npm run build
+CMD ["npm", "run", "dev"]
 
 # latest
 #FROM nginx:alpine as production-stage
