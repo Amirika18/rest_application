@@ -1,20 +1,51 @@
 version: '3'
 
 services:
-  nginx:
-    image: nginx:latest
-    ports:
-      - "80:80"
-    volumes:
-        - ./:/etc/nginx/html
-        - ./.nginx/nginx.conf:/etc/nginx/nginx.conf
-    depends_on:
-      - vue
+#  nginx:
+#    image: nginx:latest
+#    ports:
+#      - "80:80"
+#    volumes:
+#        - ./:/etc/nginx/html
+#        - ./.nginx/nginx.conf:/etc/nginx/nginx.conf
+#    depends_on:
+#      - vue
+#      - app
+#
+#  vue:
+#    build:
+#      context: .
+#      dockerfile: ./Dockerfile
+#    ports:
+#      - "5173:5173"
+#    working_dir: /vue
+#
+#  app:
+#    build:
+#      context: .
+#      dockerfile: ./Dockerfile_back
+#    ports:
+#      - "3000:3000"
+#    working_dir: /app
+#    volumes:
+#      - ./.env:/app/.env
+#    command: bash -c "npm start"
+#    depends_on:
+#      - sql
 
-  vue:
-    build:
-      context: .
-      dockerfile: ./Dockerfile
+  sql:
+    image: postgres:15-alpine
+    environment:
+#      - SA_PASSWORD=Pass@word
+      - ACCEPT_EULA=Y
+      - POSTGRES_USER=${PGUSER}
+      - POSTGRES_PASSWORD=${PGPASSWORD}
+      - POSTGRES_DB=vue-db
+      - POSTGRES_HOST_AUTH_METHOD=trust
     ports:
-      - "5173:5173"
-    working_dir: /vue
+      - "5544:5432"
+    working_dir: /sql
+    volumes:
+      - ./postgres/data:/var/lib/postgresql/data
+      - ./postgres/backups:/var/lib/postgresql/backups
+    command: bash -c "pg_restore -U postgres -d vue-db ../var/lib/postgresql/backups/dump.tar && cp ../var/lib/postgresql/backups/pg_hba.conf ../var/lib/postgresql/data/pg_hba.conf"
