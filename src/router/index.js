@@ -140,6 +140,27 @@ const router = createRouter({
       name: 'edit_project_role',
       replace: true,
       component: () => import('../views/EditProjectRoleView.vue')
+    },
+    {
+      path: '/recovery',
+      name: 'recovery_form',
+      replace: true,
+      meta: {layout: "recovery"},
+      component: () => import('../views/RecoveryView.vue')
+    },
+    {
+      path: '/recovery/:id/:tag',
+      name: 'recovery_password',
+      replace: true,
+      meta: {layout: "change"},
+      component: () => import('../views/ChangePassword.vue')
+    },
+    {
+      path: '/change_password',
+      name: 'change_password',
+      replace: true,
+      meta: {layout: "change"},
+      component: () => import('../views/ChangePassword.vue')
     }
   ]
 })
