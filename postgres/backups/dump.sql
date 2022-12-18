@@ -5,7 +5,7 @@
 -- Dumped from database version 15.1
 -- Dumped by pg_dump version 15.1
 
--- Started on 2022-12-14 16:02:32
+-- Started on 2022-12-17 12:46:30
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -18,13 +18,16 @@ SET xmloption = content;
 SET client_min_messages = warning;
 SET row_security = off;
 
+DROP DATABASE "vue-db";
 --
--- TOC entry 3437 (class 1262 OID 16516)
--- Name: vue-db; Type: DATABASE; Schema: -; Owner: -
+-- TOC entry 3466 (class 1262 OID 16384)
+-- Name: vue-db; Type: DATABASE; Schema: -; Owner: postgres
 --
 
-CREATE DATABASE "vue-db" WITH TEMPLATE = template0 ENCODING = 'UTF8' LOCALE_PROVIDER = libc LOCALE = 'English_United States.utf8';
+CREATE DATABASE "vue-db" WITH TEMPLATE = template0 ENCODING = 'UTF8' LOCALE_PROVIDER = libc LOCALE = 'en_US.utf8';
 
+
+ALTER DATABASE "vue-db" OWNER TO postgres;
 
 \connect -reuse-previous=on "dbname='vue-db'"
 
@@ -41,24 +44,26 @@ SET row_security = off;
 
 --
 -- TOC entry 5 (class 2615 OID 2200)
--- Name: public; Type: SCHEMA; Schema: -; Owner: -
+-- Name: public; Type: SCHEMA; Schema: -; Owner: postgres
 --
 
 CREATE SCHEMA public;
 
 
+ALTER SCHEMA public OWNER TO postgres;
+
 --
--- TOC entry 3438 (class 0 OID 0)
+-- TOC entry 3467 (class 0 OID 0)
 -- Dependencies: 5
--- Name: SCHEMA public; Type: COMMENT; Schema: -; Owner: -
+-- Name: SCHEMA public; Type: COMMENT; Schema: -; Owner: postgres
 --
 
 COMMENT ON SCHEMA public IS 'standard public schema';
 
 
 --
--- TOC entry 886 (class 1247 OID 16694)
--- Name: action; Type: TYPE; Schema: public; Owner: -
+-- TOC entry 857 (class 1247 OID 16388)
+-- Name: action; Type: TYPE; Schema: public; Owner: postgres
 --
 
 CREATE TYPE public.action AS ENUM (
@@ -69,9 +74,11 @@ CREATE TYPE public.action AS ENUM (
 );
 
 
+ALTER TYPE public.action OWNER TO postgres;
+
 --
--- TOC entry 883 (class 1247 OID 16680)
--- Name: clearance; Type: TYPE; Schema: public; Owner: -
+-- TOC entry 860 (class 1247 OID 16398)
+-- Name: clearance; Type: TYPE; Schema: public; Owner: postgres
 --
 
 CREATE TYPE public.clearance AS ENUM (
@@ -81,26 +88,57 @@ CREATE TYPE public.clearance AS ENUM (
 );
 
 
+ALTER TYPE public.clearance OWNER TO postgres;
+
 SET default_tablespace = '';
 
 SET default_table_access_method = heap;
 
 --
--- TOC entry 233 (class 1259 OID 16705)
--- Name: accounts; Type: TABLE; Schema: public; Owner: -
+-- TOC entry 214 (class 1259 OID 16405)
+-- Name: accounts; Type: TABLE; Schema: public; Owner: postgres
 --
 
 CREATE TABLE public.accounts (
-    login text NOT NULL,
-    password text NOT NULL,
+    login text,
+    password text,
     email text NOT NULL,
-    user_id integer
+    user_id integer,
+    active boolean DEFAULT false NOT NULL,
+    account_id integer NOT NULL
 );
 
 
+ALTER TABLE public.accounts OWNER TO postgres;
+
 --
--- TOC entry 214 (class 1259 OID 16517)
--- Name: departments; Type: TABLE; Schema: public; Owner: -
+-- TOC entry 234 (class 1259 OID 16560)
+-- Name: accounts_account_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.accounts_account_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.accounts_account_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 3468 (class 0 OID 0)
+-- Dependencies: 234
+-- Name: accounts_account_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.accounts_account_id_seq OWNED BY public.accounts.account_id;
+
+
+--
+-- TOC entry 215 (class 1259 OID 16410)
+-- Name: departments; Type: TABLE; Schema: public; Owner: postgres
 --
 
 CREATE TABLE public.departments (
@@ -109,9 +147,11 @@ CREATE TABLE public.departments (
 );
 
 
+ALTER TABLE public.departments OWNER TO postgres;
+
 --
--- TOC entry 215 (class 1259 OID 16522)
--- Name: departments_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+-- TOC entry 216 (class 1259 OID 16415)
+-- Name: departments_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
 CREATE SEQUENCE public.departments_id_seq
@@ -123,18 +163,20 @@ CREATE SEQUENCE public.departments_id_seq
     CACHE 1;
 
 
+ALTER TABLE public.departments_id_seq OWNER TO postgres;
+
 --
--- TOC entry 3440 (class 0 OID 0)
--- Dependencies: 215
--- Name: departments_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+-- TOC entry 3469 (class 0 OID 0)
+-- Dependencies: 216
+-- Name: departments_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
 ALTER SEQUENCE public.departments_id_seq OWNED BY public.departments.dep_id;
 
 
 --
--- TOC entry 232 (class 1259 OID 16655)
--- Name: permissions; Type: TABLE; Schema: public; Owner: -
+-- TOC entry 217 (class 1259 OID 16416)
+-- Name: permissions; Type: TABLE; Schema: public; Owner: postgres
 --
 
 CREATE TABLE public.permissions (
@@ -146,9 +188,11 @@ CREATE TABLE public.permissions (
 );
 
 
+ALTER TABLE public.permissions OWNER TO postgres;
+
 --
--- TOC entry 231 (class 1259 OID 16654)
--- Name: permissions_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+-- TOC entry 218 (class 1259 OID 16421)
+-- Name: permissions_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
 CREATE SEQUENCE public.permissions_id_seq
@@ -160,18 +204,20 @@ CREATE SEQUENCE public.permissions_id_seq
     CACHE 1;
 
 
+ALTER TABLE public.permissions_id_seq OWNER TO postgres;
+
 --
--- TOC entry 3443 (class 0 OID 0)
--- Dependencies: 231
--- Name: permissions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+-- TOC entry 3470 (class 0 OID 0)
+-- Dependencies: 218
+-- Name: permissions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
 ALTER SEQUENCE public.permissions_id_seq OWNED BY public.permissions.perm_id;
 
 
 --
--- TOC entry 216 (class 1259 OID 16523)
--- Name: positions; Type: TABLE; Schema: public; Owner: -
+-- TOC entry 219 (class 1259 OID 16422)
+-- Name: positions; Type: TABLE; Schema: public; Owner: postgres
 --
 
 CREATE TABLE public.positions (
@@ -180,9 +226,11 @@ CREATE TABLE public.positions (
 );
 
 
+ALTER TABLE public.positions OWNER TO postgres;
+
 --
--- TOC entry 217 (class 1259 OID 16528)
--- Name: positions_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+-- TOC entry 220 (class 1259 OID 16427)
+-- Name: positions_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
 CREATE SEQUENCE public.positions_id_seq
@@ -194,18 +242,20 @@ CREATE SEQUENCE public.positions_id_seq
     CACHE 1;
 
 
+ALTER TABLE public.positions_id_seq OWNER TO postgres;
+
 --
--- TOC entry 3445 (class 0 OID 0)
--- Dependencies: 217
--- Name: positions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+-- TOC entry 3471 (class 0 OID 0)
+-- Dependencies: 220
+-- Name: positions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
 ALTER SEQUENCE public.positions_id_seq OWNED BY public.positions.pos_id;
 
 
 --
--- TOC entry 219 (class 1259 OID 16532)
--- Name: project_roles; Type: TABLE; Schema: public; Owner: -
+-- TOC entry 221 (class 1259 OID 16428)
+-- Name: project_roles; Type: TABLE; Schema: public; Owner: postgres
 --
 
 CREATE TABLE public.project_roles (
@@ -214,9 +264,11 @@ CREATE TABLE public.project_roles (
 );
 
 
+ALTER TABLE public.project_roles OWNER TO postgres;
+
 --
--- TOC entry 220 (class 1259 OID 16537)
--- Name: project_roles_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+-- TOC entry 222 (class 1259 OID 16433)
+-- Name: project_roles_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
 CREATE SEQUENCE public.project_roles_id_seq
@@ -228,18 +280,20 @@ CREATE SEQUENCE public.project_roles_id_seq
     CACHE 1;
 
 
+ALTER TABLE public.project_roles_id_seq OWNER TO postgres;
+
 --
--- TOC entry 3448 (class 0 OID 0)
--- Dependencies: 220
--- Name: project_roles_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+-- TOC entry 3472 (class 0 OID 0)
+-- Dependencies: 222
+-- Name: project_roles_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
 ALTER SEQUENCE public.project_roles_id_seq OWNED BY public.project_roles.proj_role_id;
 
 
 --
--- TOC entry 221 (class 1259 OID 16538)
--- Name: projects; Type: TABLE; Schema: public; Owner: -
+-- TOC entry 223 (class 1259 OID 16434)
+-- Name: projects; Type: TABLE; Schema: public; Owner: postgres
 --
 
 CREATE TABLE public.projects (
@@ -251,9 +305,11 @@ CREATE TABLE public.projects (
 );
 
 
+ALTER TABLE public.projects OWNER TO postgres;
+
 --
--- TOC entry 222 (class 1259 OID 16543)
--- Name: projects_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+-- TOC entry 224 (class 1259 OID 16439)
+-- Name: projects_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
 CREATE SEQUENCE public.projects_id_seq
@@ -265,18 +321,20 @@ CREATE SEQUENCE public.projects_id_seq
     CACHE 1;
 
 
+ALTER TABLE public.projects_id_seq OWNER TO postgres;
+
 --
--- TOC entry 3451 (class 0 OID 0)
--- Dependencies: 222
--- Name: projects_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+-- TOC entry 3473 (class 0 OID 0)
+-- Dependencies: 224
+-- Name: projects_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
 ALTER SEQUENCE public.projects_id_seq OWNED BY public.projects.proj_id;
 
 
 --
--- TOC entry 224 (class 1259 OID 16547)
--- Name: skills; Type: TABLE; Schema: public; Owner: -
+-- TOC entry 225 (class 1259 OID 16440)
+-- Name: skills; Type: TABLE; Schema: public; Owner: postgres
 --
 
 CREATE TABLE public.skills (
@@ -286,9 +344,11 @@ CREATE TABLE public.skills (
 );
 
 
+ALTER TABLE public.skills OWNER TO postgres;
+
 --
--- TOC entry 225 (class 1259 OID 16552)
--- Name: skills_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+-- TOC entry 226 (class 1259 OID 16445)
+-- Name: skills_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
 CREATE SEQUENCE public.skills_id_seq
@@ -300,18 +360,20 @@ CREATE SEQUENCE public.skills_id_seq
     CACHE 1;
 
 
+ALTER TABLE public.skills_id_seq OWNER TO postgres;
+
 --
--- TOC entry 3454 (class 0 OID 0)
--- Dependencies: 225
--- Name: skills_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+-- TOC entry 3474 (class 0 OID 0)
+-- Dependencies: 226
+-- Name: skills_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
 ALTER SEQUENCE public.skills_id_seq OWNED BY public.skills.skill_id;
 
 
 --
--- TOC entry 227 (class 1259 OID 16556)
--- Name: system_roles; Type: TABLE; Schema: public; Owner: -
+-- TOC entry 227 (class 1259 OID 16446)
+-- Name: system_roles; Type: TABLE; Schema: public; Owner: postgres
 --
 
 CREATE TABLE public.system_roles (
@@ -320,9 +382,11 @@ CREATE TABLE public.system_roles (
 );
 
 
+ALTER TABLE public.system_roles OWNER TO postgres;
+
 --
--- TOC entry 228 (class 1259 OID 16561)
--- Name: system_roles_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+-- TOC entry 228 (class 1259 OID 16451)
+-- Name: system_roles_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
 CREATE SEQUENCE public.system_roles_id_seq
@@ -334,18 +398,20 @@ CREATE SEQUENCE public.system_roles_id_seq
     CACHE 1;
 
 
+ALTER TABLE public.system_roles_id_seq OWNER TO postgres;
+
 --
--- TOC entry 3457 (class 0 OID 0)
+-- TOC entry 3475 (class 0 OID 0)
 -- Dependencies: 228
--- Name: system_roles_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+-- Name: system_roles_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
 ALTER SEQUENCE public.system_roles_id_seq OWNED BY public.system_roles.system_role_id;
 
 
 --
--- TOC entry 218 (class 1259 OID 16529)
--- Name: user_x_project_x_role; Type: TABLE; Schema: public; Owner: -
+-- TOC entry 229 (class 1259 OID 16452)
+-- Name: user_x_project_x_role; Type: TABLE; Schema: public; Owner: postgres
 --
 
 CREATE TABLE public.user_x_project_x_role (
@@ -355,9 +421,11 @@ CREATE TABLE public.user_x_project_x_role (
 );
 
 
+ALTER TABLE public.user_x_project_x_role OWNER TO postgres;
+
 --
--- TOC entry 223 (class 1259 OID 16544)
--- Name: user_x_skill; Type: TABLE; Schema: public; Owner: -
+-- TOC entry 230 (class 1259 OID 16455)
+-- Name: user_x_skill; Type: TABLE; Schema: public; Owner: postgres
 --
 
 CREATE TABLE public.user_x_skill (
@@ -366,20 +434,24 @@ CREATE TABLE public.user_x_skill (
 );
 
 
+ALTER TABLE public.user_x_skill OWNER TO postgres;
+
 --
--- TOC entry 226 (class 1259 OID 16553)
--- Name: user_x_sys_role; Type: TABLE; Schema: public; Owner: -
+-- TOC entry 231 (class 1259 OID 16458)
+-- Name: user_x_sys_role; Type: TABLE; Schema: public; Owner: postgres
 --
 
 CREATE TABLE public.user_x_sys_role (
-    "user" integer NOT NULL,
+    account integer NOT NULL,
     system_role integer NOT NULL
 );
 
 
+ALTER TABLE public.user_x_sys_role OWNER TO postgres;
+
 --
--- TOC entry 229 (class 1259 OID 16562)
--- Name: users; Type: TABLE; Schema: public; Owner: -
+-- TOC entry 232 (class 1259 OID 16461)
+-- Name: users; Type: TABLE; Schema: public; Owner: postgres
 --
 
 CREATE TABLE public.users (
@@ -392,9 +464,11 @@ CREATE TABLE public.users (
 );
 
 
+ALTER TABLE public.users OWNER TO postgres;
+
 --
--- TOC entry 230 (class 1259 OID 16567)
--- Name: users_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+-- TOC entry 233 (class 1259 OID 16466)
+-- Name: users_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
 CREATE SEQUENCE public.users_id_seq
@@ -406,93 +480,104 @@ CREATE SEQUENCE public.users_id_seq
     CACHE 1;
 
 
+ALTER TABLE public.users_id_seq OWNER TO postgres;
+
 --
--- TOC entry 3463 (class 0 OID 0)
--- Dependencies: 230
--- Name: users_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+-- TOC entry 3476 (class 0 OID 0)
+-- Dependencies: 233
+-- Name: users_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
 ALTER SEQUENCE public.users_id_seq OWNED BY public.users.user_id;
 
 
 --
--- TOC entry 3230 (class 2604 OID 16568)
--- Name: departments dep_id; Type: DEFAULT; Schema: public; Owner: -
+-- TOC entry 3255 (class 2604 OID 16561)
+-- Name: accounts account_id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.accounts ALTER COLUMN account_id SET DEFAULT nextval('public.accounts_account_id_seq'::regclass);
+
+
+--
+-- TOC entry 3256 (class 2604 OID 16551)
+-- Name: departments dep_id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.departments ALTER COLUMN dep_id SET DEFAULT nextval('public.departments_id_seq'::regclass);
 
 
 --
--- TOC entry 3237 (class 2604 OID 16658)
--- Name: permissions perm_id; Type: DEFAULT; Schema: public; Owner: -
+-- TOC entry 3257 (class 2604 OID 16552)
+-- Name: permissions perm_id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.permissions ALTER COLUMN perm_id SET DEFAULT nextval('public.permissions_id_seq'::regclass);
 
 
 --
--- TOC entry 3231 (class 2604 OID 16569)
--- Name: positions pos_id; Type: DEFAULT; Schema: public; Owner: -
+-- TOC entry 3258 (class 2604 OID 16553)
+-- Name: positions pos_id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.positions ALTER COLUMN pos_id SET DEFAULT nextval('public.positions_id_seq'::regclass);
 
 
 --
--- TOC entry 3232 (class 2604 OID 16570)
--- Name: project_roles proj_role_id; Type: DEFAULT; Schema: public; Owner: -
+-- TOC entry 3259 (class 2604 OID 16554)
+-- Name: project_roles proj_role_id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.project_roles ALTER COLUMN proj_role_id SET DEFAULT nextval('public.project_roles_id_seq'::regclass);
 
 
 --
--- TOC entry 3233 (class 2604 OID 16571)
--- Name: projects proj_id; Type: DEFAULT; Schema: public; Owner: -
+-- TOC entry 3260 (class 2604 OID 16555)
+-- Name: projects proj_id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.projects ALTER COLUMN proj_id SET DEFAULT nextval('public.projects_id_seq'::regclass);
 
 
 --
--- TOC entry 3234 (class 2604 OID 16572)
--- Name: skills skill_id; Type: DEFAULT; Schema: public; Owner: -
+-- TOC entry 3261 (class 2604 OID 16556)
+-- Name: skills skill_id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.skills ALTER COLUMN skill_id SET DEFAULT nextval('public.skills_id_seq'::regclass);
 
 
 --
--- TOC entry 3235 (class 2604 OID 16573)
--- Name: system_roles system_role_id; Type: DEFAULT; Schema: public; Owner: -
+-- TOC entry 3262 (class 2604 OID 16557)
+-- Name: system_roles system_role_id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.system_roles ALTER COLUMN system_role_id SET DEFAULT nextval('public.system_roles_id_seq'::regclass);
 
 
 --
--- TOC entry 3236 (class 2604 OID 16574)
--- Name: users user_id; Type: DEFAULT; Schema: public; Owner: -
+-- TOC entry 3263 (class 2604 OID 16558)
+-- Name: users user_id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.users ALTER COLUMN user_id SET DEFAULT nextval('public.users_id_seq'::regclass);
 
 
 --
--- TOC entry 3431 (class 0 OID 16705)
--- Dependencies: 233
--- Data for Name: accounts; Type: TABLE DATA; Schema: public; Owner: -
+-- TOC entry 3440 (class 0 OID 16405)
+-- Dependencies: 214
+-- Data for Name: accounts; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.accounts (login, password, email, user_id) FROM stdin;
+COPY public.accounts (login, password, email, user_id, active, account_id) FROM stdin;
+foilhatguy	$argon2id$v=19$m=65536,t=3,p=4$FOsOh+zNioqeaXK/AUfsVA$lfteZ1lnaw0eTvbZAmQhSkyZ2dR9V4mAOBlD7krUWl0	antony.aleynikov@gmail.com	\N	t	1
 \.
 
 
 --
--- TOC entry 3412 (class 0 OID 16517)
--- Dependencies: 214
--- Data for Name: departments; Type: TABLE DATA; Schema: public; Owner: -
+-- TOC entry 3441 (class 0 OID 16410)
+-- Dependencies: 215
+-- Data for Name: departments; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 COPY public.departments (dep_id, name) FROM stdin;
@@ -510,9 +595,9 @@ COPY public.departments (dep_id, name) FROM stdin;
 
 
 --
--- TOC entry 3430 (class 0 OID 16655)
--- Dependencies: 232
--- Data for Name: permissions; Type: TABLE DATA; Schema: public; Owner: -
+-- TOC entry 3443 (class 0 OID 16416)
+-- Dependencies: 217
+-- Data for Name: permissions; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 COPY public.permissions (perm_id, table_name, clearance, system_role, action) FROM stdin;
@@ -520,9 +605,9 @@ COPY public.permissions (perm_id, table_name, clearance, system_role, action) FR
 
 
 --
--- TOC entry 3414 (class 0 OID 16523)
--- Dependencies: 216
--- Data for Name: positions; Type: TABLE DATA; Schema: public; Owner: -
+-- TOC entry 3445 (class 0 OID 16422)
+-- Dependencies: 219
+-- Data for Name: positions; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 COPY public.positions (pos_id, name) FROM stdin;
@@ -536,9 +621,9 @@ COPY public.positions (pos_id, name) FROM stdin;
 
 
 --
--- TOC entry 3417 (class 0 OID 16532)
--- Dependencies: 219
--- Data for Name: project_roles; Type: TABLE DATA; Schema: public; Owner: -
+-- TOC entry 3447 (class 0 OID 16428)
+-- Dependencies: 221
+-- Data for Name: project_roles; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 COPY public.project_roles (proj_role_id, name) FROM stdin;
@@ -550,9 +635,9 @@ COPY public.project_roles (proj_role_id, name) FROM stdin;
 
 
 --
--- TOC entry 3419 (class 0 OID 16538)
--- Dependencies: 221
--- Data for Name: projects; Type: TABLE DATA; Schema: public; Owner: -
+-- TOC entry 3449 (class 0 OID 16434)
+-- Dependencies: 223
+-- Data for Name: projects; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 COPY public.projects (proj_id, name, start, "end", description) FROM stdin;
@@ -563,9 +648,9 @@ COPY public.projects (proj_id, name, start, "end", description) FROM stdin;
 
 
 --
--- TOC entry 3422 (class 0 OID 16547)
--- Dependencies: 224
--- Data for Name: skills; Type: TABLE DATA; Schema: public; Owner: -
+-- TOC entry 3451 (class 0 OID 16440)
+-- Dependencies: 225
+-- Data for Name: skills; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 COPY public.skills (skill_id, name, description) FROM stdin;
@@ -586,9 +671,9 @@ COPY public.skills (skill_id, name, description) FROM stdin;
 
 
 --
--- TOC entry 3425 (class 0 OID 16556)
+-- TOC entry 3453 (class 0 OID 16446)
 -- Dependencies: 227
--- Data for Name: system_roles; Type: TABLE DATA; Schema: public; Owner: -
+-- Data for Name: system_roles; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 COPY public.system_roles (system_role_id, name) FROM stdin;
@@ -600,9 +685,9 @@ COPY public.system_roles (system_role_id, name) FROM stdin;
 
 
 --
--- TOC entry 3416 (class 0 OID 16529)
--- Dependencies: 218
--- Data for Name: user_x_project_x_role; Type: TABLE DATA; Schema: public; Owner: -
+-- TOC entry 3455 (class 0 OID 16452)
+-- Dependencies: 229
+-- Data for Name: user_x_project_x_role; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 COPY public.user_x_project_x_role ("user", project_role, project) FROM stdin;
@@ -619,9 +704,9 @@ COPY public.user_x_project_x_role ("user", project_role, project) FROM stdin;
 
 
 --
--- TOC entry 3421 (class 0 OID 16544)
--- Dependencies: 223
--- Data for Name: user_x_skill; Type: TABLE DATA; Schema: public; Owner: -
+-- TOC entry 3456 (class 0 OID 16455)
+-- Dependencies: 230
+-- Data for Name: user_x_skill; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 COPY public.user_x_skill ("user", skill) FROM stdin;
@@ -661,22 +746,19 @@ COPY public.user_x_skill ("user", skill) FROM stdin;
 
 
 --
--- TOC entry 3424 (class 0 OID 16553)
--- Dependencies: 226
--- Data for Name: user_x_sys_role; Type: TABLE DATA; Schema: public; Owner: -
+-- TOC entry 3457 (class 0 OID 16458)
+-- Dependencies: 231
+-- Data for Name: user_x_sys_role; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.user_x_sys_role ("user", system_role) FROM stdin;
-1	2
-2	2
-3	2
+COPY public.user_x_sys_role (account, system_role) FROM stdin;
 \.
 
 
 --
--- TOC entry 3427 (class 0 OID 16562)
--- Dependencies: 229
--- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: -
+-- TOC entry 3458 (class 0 OID 16461)
+-- Dependencies: 232
+-- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 COPY public.users (user_id, name, surname, patronymic, department, "position") FROM stdin;
@@ -690,80 +772,98 @@ COPY public.users (user_id, name, surname, patronymic, department, "position") F
 
 
 --
--- TOC entry 3465 (class 0 OID 0)
--- Dependencies: 215
--- Name: departments_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+-- TOC entry 3477 (class 0 OID 0)
+-- Dependencies: 234
+-- Name: accounts_account_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.accounts_account_id_seq', 1, true);
+
+
+--
+-- TOC entry 3478 (class 0 OID 0)
+-- Dependencies: 216
+-- Name: departments_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
 SELECT pg_catalog.setval('public.departments_id_seq', 1, false);
 
 
 --
--- TOC entry 3466 (class 0 OID 0)
--- Dependencies: 231
--- Name: permissions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+-- TOC entry 3479 (class 0 OID 0)
+-- Dependencies: 218
+-- Name: permissions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
 SELECT pg_catalog.setval('public.permissions_id_seq', 2, true);
 
 
 --
--- TOC entry 3467 (class 0 OID 0)
--- Dependencies: 217
--- Name: positions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+-- TOC entry 3480 (class 0 OID 0)
+-- Dependencies: 220
+-- Name: positions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
 SELECT pg_catalog.setval('public.positions_id_seq', 1, false);
 
 
 --
--- TOC entry 3468 (class 0 OID 0)
--- Dependencies: 220
--- Name: project_roles_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+-- TOC entry 3481 (class 0 OID 0)
+-- Dependencies: 222
+-- Name: project_roles_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
 SELECT pg_catalog.setval('public.project_roles_id_seq', 1, false);
 
 
 --
--- TOC entry 3469 (class 0 OID 0)
--- Dependencies: 222
--- Name: projects_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+-- TOC entry 3482 (class 0 OID 0)
+-- Dependencies: 224
+-- Name: projects_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
 SELECT pg_catalog.setval('public.projects_id_seq', 1, false);
 
 
 --
--- TOC entry 3470 (class 0 OID 0)
--- Dependencies: 225
--- Name: skills_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+-- TOC entry 3483 (class 0 OID 0)
+-- Dependencies: 226
+-- Name: skills_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
 SELECT pg_catalog.setval('public.skills_id_seq', 1, false);
 
 
 --
--- TOC entry 3471 (class 0 OID 0)
+-- TOC entry 3484 (class 0 OID 0)
 -- Dependencies: 228
--- Name: system_roles_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+-- Name: system_roles_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
 SELECT pg_catalog.setval('public.system_roles_id_seq', 4, true);
 
 
 --
--- TOC entry 3472 (class 0 OID 0)
--- Dependencies: 230
--- Name: users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+-- TOC entry 3485 (class 0 OID 0)
+-- Dependencies: 233
+-- Name: users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
 SELECT pg_catalog.setval('public.users_id_seq', 18, true);
 
 
 --
--- TOC entry 3239 (class 2606 OID 16576)
--- Name: departments departments_pk; Type: CONSTRAINT; Schema: public; Owner: -
+-- TOC entry 3267 (class 2606 OID 16571)
+-- Name: accounts accounts_pk; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.accounts
+    ADD CONSTRAINT accounts_pk PRIMARY KEY (account_id);
+
+
+--
+-- TOC entry 3269 (class 2606 OID 16476)
+-- Name: departments departments_pk; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.departments
@@ -771,8 +871,8 @@ ALTER TABLE ONLY public.departments
 
 
 --
--- TOC entry 3241 (class 2606 OID 16578)
--- Name: positions positions_pk; Type: CONSTRAINT; Schema: public; Owner: -
+-- TOC entry 3272 (class 2606 OID 16478)
+-- Name: positions positions_pk; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.positions
@@ -780,8 +880,8 @@ ALTER TABLE ONLY public.positions
 
 
 --
--- TOC entry 3244 (class 2606 OID 16580)
--- Name: project_roles project_roles_pk; Type: CONSTRAINT; Schema: public; Owner: -
+-- TOC entry 3274 (class 2606 OID 16480)
+-- Name: project_roles project_roles_pk; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.project_roles
@@ -789,8 +889,8 @@ ALTER TABLE ONLY public.project_roles
 
 
 --
--- TOC entry 3246 (class 2606 OID 16582)
--- Name: projects projects_pk; Type: CONSTRAINT; Schema: public; Owner: -
+-- TOC entry 3276 (class 2606 OID 16482)
+-- Name: projects projects_pk; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.projects
@@ -798,8 +898,8 @@ ALTER TABLE ONLY public.projects
 
 
 --
--- TOC entry 3249 (class 2606 OID 16584)
--- Name: skills skills_pk; Type: CONSTRAINT; Schema: public; Owner: -
+-- TOC entry 3278 (class 2606 OID 16484)
+-- Name: skills skills_pk; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.skills
@@ -807,17 +907,17 @@ ALTER TABLE ONLY public.skills
 
 
 --
--- TOC entry 3251 (class 2606 OID 16586)
--- Name: user_x_sys_role system_clearance_person_key; Type: CONSTRAINT; Schema: public; Owner: -
+-- TOC entry 3284 (class 2606 OID 16486)
+-- Name: user_x_sys_role system_clearance_person_key; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.user_x_sys_role
-    ADD CONSTRAINT system_clearance_person_key UNIQUE ("user");
+    ADD CONSTRAINT system_clearance_person_key UNIQUE (account);
 
 
 --
--- TOC entry 3253 (class 2606 OID 16588)
--- Name: system_roles system_roles_pk; Type: CONSTRAINT; Schema: public; Owner: -
+-- TOC entry 3280 (class 2606 OID 16488)
+-- Name: system_roles system_roles_pk; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.system_roles
@@ -825,8 +925,8 @@ ALTER TABLE ONLY public.system_roles
 
 
 --
--- TOC entry 3255 (class 2606 OID 16590)
--- Name: users users_pk; Type: CONSTRAINT; Schema: public; Owner: -
+-- TOC entry 3286 (class 2606 OID 16490)
+-- Name: users users_pk; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.users
@@ -834,48 +934,48 @@ ALTER TABLE ONLY public.users
 
 
 --
--- TOC entry 3257 (class 1259 OID 16718)
--- Name: accounts_email_idx; Type: INDEX; Schema: public; Owner: -
+-- TOC entry 3264 (class 1259 OID 16569)
+-- Name: accounts_account_id_idx; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE UNIQUE INDEX accounts_account_id_idx ON public.accounts USING btree (account_id);
+
+
+--
+-- TOC entry 3265 (class 1259 OID 16491)
+-- Name: accounts_email_idx; Type: INDEX; Schema: public; Owner: postgres
 --
 
 CREATE UNIQUE INDEX accounts_email_idx ON public.accounts USING btree (email);
 
 
 --
--- TOC entry 3258 (class 1259 OID 16716)
--- Name: accounts_login_idx; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE UNIQUE INDEX accounts_login_idx ON public.accounts USING btree (login);
-
-
---
--- TOC entry 3256 (class 1259 OID 16671)
--- Name: permissions_id_idx; Type: INDEX; Schema: public; Owner: -
+-- TOC entry 3270 (class 1259 OID 16493)
+-- Name: permissions_id_idx; Type: INDEX; Schema: public; Owner: postgres
 --
 
 CREATE UNIQUE INDEX permissions_id_idx ON public.permissions USING btree (perm_id);
 
 
 --
--- TOC entry 3242 (class 1259 OID 16591)
--- Name: project_clearance_person_idx; Type: INDEX; Schema: public; Owner: -
+-- TOC entry 3281 (class 1259 OID 16494)
+-- Name: project_clearance_person_idx; Type: INDEX; Schema: public; Owner: postgres
 --
 
 CREATE UNIQUE INDEX project_clearance_person_idx ON public.user_x_project_x_role USING btree ("user", project);
 
 
 --
--- TOC entry 3247 (class 1259 OID 16703)
--- Name: user_x_skill_user_idx; Type: INDEX; Schema: public; Owner: -
+-- TOC entry 3282 (class 1259 OID 16495)
+-- Name: user_x_skill_user_idx; Type: INDEX; Schema: public; Owner: postgres
 --
 
 CREATE UNIQUE INDEX user_x_skill_user_idx ON public.user_x_skill USING btree ("user", skill);
 
 
 --
--- TOC entry 3269 (class 2606 OID 16711)
--- Name: accounts accounts_fk; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- TOC entry 3287 (class 2606 OID 16496)
+-- Name: accounts accounts_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.accounts
@@ -883,8 +983,8 @@ ALTER TABLE ONLY public.accounts
 
 
 --
--- TOC entry 3268 (class 2606 OID 16688)
--- Name: permissions permissions_fk; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- TOC entry 3288 (class 2606 OID 16501)
+-- Name: permissions permissions_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.permissions
@@ -892,8 +992,8 @@ ALTER TABLE ONLY public.permissions
 
 
 --
--- TOC entry 3259 (class 2606 OID 16592)
--- Name: user_x_project_x_role project_clearance_fk0; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- TOC entry 3289 (class 2606 OID 16506)
+-- Name: user_x_project_x_role project_clearance_fk0; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.user_x_project_x_role
@@ -901,8 +1001,8 @@ ALTER TABLE ONLY public.user_x_project_x_role
 
 
 --
--- TOC entry 3260 (class 2606 OID 16597)
--- Name: user_x_project_x_role project_clearance_fk1; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- TOC entry 3290 (class 2606 OID 16511)
+-- Name: user_x_project_x_role project_clearance_fk1; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.user_x_project_x_role
@@ -910,8 +1010,8 @@ ALTER TABLE ONLY public.user_x_project_x_role
 
 
 --
--- TOC entry 3261 (class 2606 OID 16602)
--- Name: user_x_project_x_role project_clearance_fk2; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- TOC entry 3291 (class 2606 OID 16516)
+-- Name: user_x_project_x_role project_clearance_fk2; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.user_x_project_x_role
@@ -919,8 +1019,8 @@ ALTER TABLE ONLY public.user_x_project_x_role
 
 
 --
--- TOC entry 3262 (class 2606 OID 16607)
--- Name: user_x_skill skill_allocation_fk0; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- TOC entry 3292 (class 2606 OID 16521)
+-- Name: user_x_skill skill_allocation_fk0; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.user_x_skill
@@ -928,8 +1028,8 @@ ALTER TABLE ONLY public.user_x_skill
 
 
 --
--- TOC entry 3263 (class 2606 OID 16612)
--- Name: user_x_skill skill_allocation_fk1; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- TOC entry 3293 (class 2606 OID 16526)
+-- Name: user_x_skill skill_allocation_fk1; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.user_x_skill
@@ -937,17 +1037,8 @@ ALTER TABLE ONLY public.user_x_skill
 
 
 --
--- TOC entry 3264 (class 2606 OID 16617)
--- Name: user_x_sys_role system_clearance_fk0; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.user_x_sys_role
-    ADD CONSTRAINT system_clearance_fk0 FOREIGN KEY ("user") REFERENCES public.users(user_id) ON DELETE CASCADE;
-
-
---
--- TOC entry 3265 (class 2606 OID 16622)
--- Name: user_x_sys_role system_clearance_fk1; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- TOC entry 3294 (class 2606 OID 16536)
+-- Name: user_x_sys_role system_clearance_fk1; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.user_x_sys_role
@@ -955,8 +1046,17 @@ ALTER TABLE ONLY public.user_x_sys_role
 
 
 --
--- TOC entry 3266 (class 2606 OID 16627)
--- Name: users users_fk; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- TOC entry 3295 (class 2606 OID 16577)
+-- Name: user_x_sys_role user_x_sys_role_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.user_x_sys_role
+    ADD CONSTRAINT user_x_sys_role_fk FOREIGN KEY (account) REFERENCES public.accounts(account_id) ON DELETE CASCADE;
+
+
+--
+-- TOC entry 3296 (class 2606 OID 16541)
+-- Name: users users_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.users
@@ -964,194 +1064,15 @@ ALTER TABLE ONLY public.users
 
 
 --
--- TOC entry 3267 (class 2606 OID 16632)
--- Name: users users_fk1; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- TOC entry 3297 (class 2606 OID 16546)
+-- Name: users users_fk1; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.users
     ADD CONSTRAINT users_fk1 FOREIGN KEY ("position") REFERENCES public.positions(pos_id) ON DELETE SET NULL;
 
 
---
--- TOC entry 3439 (class 0 OID 0)
--- Dependencies: 214
--- Name: TABLE departments; Type: ACL; Schema: public; Owner: -
---
-
-GRANT ALL ON TABLE public.departments TO db_apps;
-GRANT ALL ON TABLE public.departments TO office_management_server;
-
-
---
--- TOC entry 3441 (class 0 OID 0)
--- Dependencies: 215
--- Name: SEQUENCE departments_id_seq; Type: ACL; Schema: public; Owner: -
---
-
-GRANT ALL ON SEQUENCE public.departments_id_seq TO db_apps;
-GRANT ALL ON SEQUENCE public.departments_id_seq TO office_management_server;
-
-
---
--- TOC entry 3442 (class 0 OID 0)
--- Dependencies: 232
--- Name: TABLE permissions; Type: ACL; Schema: public; Owner: -
---
-
-GRANT ALL ON TABLE public.permissions TO office_management_server;
-
-
---
--- TOC entry 3444 (class 0 OID 0)
--- Dependencies: 216
--- Name: TABLE positions; Type: ACL; Schema: public; Owner: -
---
-
-GRANT ALL ON TABLE public.positions TO db_apps;
-GRANT ALL ON TABLE public.positions TO office_management_server;
-
-
---
--- TOC entry 3446 (class 0 OID 0)
--- Dependencies: 217
--- Name: SEQUENCE positions_id_seq; Type: ACL; Schema: public; Owner: -
---
-
-GRANT ALL ON SEQUENCE public.positions_id_seq TO db_apps;
-GRANT ALL ON SEQUENCE public.positions_id_seq TO office_management_server;
-
-
---
--- TOC entry 3447 (class 0 OID 0)
--- Dependencies: 219
--- Name: TABLE project_roles; Type: ACL; Schema: public; Owner: -
---
-
-GRANT ALL ON TABLE public.project_roles TO db_apps;
-GRANT ALL ON TABLE public.project_roles TO office_management_server;
-
-
---
--- TOC entry 3449 (class 0 OID 0)
--- Dependencies: 220
--- Name: SEQUENCE project_roles_id_seq; Type: ACL; Schema: public; Owner: -
---
-
-GRANT ALL ON SEQUENCE public.project_roles_id_seq TO db_apps;
-GRANT ALL ON SEQUENCE public.project_roles_id_seq TO office_management_server;
-
-
---
--- TOC entry 3450 (class 0 OID 0)
--- Dependencies: 221
--- Name: TABLE projects; Type: ACL; Schema: public; Owner: -
---
-
-GRANT ALL ON TABLE public.projects TO db_apps;
-GRANT ALL ON TABLE public.projects TO office_management_server;
-
-
---
--- TOC entry 3452 (class 0 OID 0)
--- Dependencies: 222
--- Name: SEQUENCE projects_id_seq; Type: ACL; Schema: public; Owner: -
---
-
-GRANT ALL ON SEQUENCE public.projects_id_seq TO db_apps;
-GRANT ALL ON SEQUENCE public.projects_id_seq TO office_management_server;
-
-
---
--- TOC entry 3453 (class 0 OID 0)
--- Dependencies: 224
--- Name: TABLE skills; Type: ACL; Schema: public; Owner: -
---
-
-GRANT ALL ON TABLE public.skills TO db_apps;
-GRANT ALL ON TABLE public.skills TO office_management_server;
-
-
---
--- TOC entry 3455 (class 0 OID 0)
--- Dependencies: 225
--- Name: SEQUENCE skills_id_seq; Type: ACL; Schema: public; Owner: -
---
-
-GRANT ALL ON SEQUENCE public.skills_id_seq TO db_apps;
-GRANT ALL ON SEQUENCE public.skills_id_seq TO office_management_server;
-
-
---
--- TOC entry 3456 (class 0 OID 0)
--- Dependencies: 227
--- Name: TABLE system_roles; Type: ACL; Schema: public; Owner: -
---
-
-GRANT ALL ON TABLE public.system_roles TO db_apps;
-GRANT ALL ON TABLE public.system_roles TO office_management_server;
-
-
---
--- TOC entry 3458 (class 0 OID 0)
--- Dependencies: 228
--- Name: SEQUENCE system_roles_id_seq; Type: ACL; Schema: public; Owner: -
---
-
-GRANT ALL ON SEQUENCE public.system_roles_id_seq TO db_apps;
-GRANT ALL ON SEQUENCE public.system_roles_id_seq TO office_management_server;
-
-
---
--- TOC entry 3459 (class 0 OID 0)
--- Dependencies: 218
--- Name: TABLE user_x_project_x_role; Type: ACL; Schema: public; Owner: -
---
-
-GRANT ALL ON TABLE public.user_x_project_x_role TO db_apps;
-GRANT ALL ON TABLE public.user_x_project_x_role TO office_management_server;
-
-
---
--- TOC entry 3460 (class 0 OID 0)
--- Dependencies: 223
--- Name: TABLE user_x_skill; Type: ACL; Schema: public; Owner: -
---
-
-GRANT ALL ON TABLE public.user_x_skill TO db_apps;
-GRANT ALL ON TABLE public.user_x_skill TO office_management_server;
-
-
---
--- TOC entry 3461 (class 0 OID 0)
--- Dependencies: 226
--- Name: TABLE user_x_sys_role; Type: ACL; Schema: public; Owner: -
---
-
-GRANT ALL ON TABLE public.user_x_sys_role TO db_apps;
-GRANT ALL ON TABLE public.user_x_sys_role TO office_management_server;
-
-
---
--- TOC entry 3462 (class 0 OID 0)
--- Dependencies: 229
--- Name: TABLE users; Type: ACL; Schema: public; Owner: -
---
-
-GRANT ALL ON TABLE public.users TO db_apps;
-GRANT ALL ON TABLE public.users TO office_management_server;
-
-
---
--- TOC entry 3464 (class 0 OID 0)
--- Dependencies: 230
--- Name: SEQUENCE users_id_seq; Type: ACL; Schema: public; Owner: -
---
-
-GRANT ALL ON SEQUENCE public.users_id_seq TO db_apps;
-GRANT ALL ON SEQUENCE public.users_id_seq TO office_management_server;
-
-
--- Completed on 2022-12-14 16:02:32
+-- Completed on 2022-12-17 12:46:32
 
 --
 -- PostgreSQL database dump complete

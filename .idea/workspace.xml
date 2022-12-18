@@ -4,15 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9505743b-40fb-46e8-b453-f38672779fc8" name="Changes" comment="Docker full">
-      <change afterPath="$PROJECT_DIR$/src/views/ChangePassword.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/views/RecoveryView.vue" afterDir="false" />
+    <list default="true" id="9505743b-40fb-46e8-b453-f38672779fc8" name="Changes" comment="Docker-compose for sql">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.nginx/nginx.conf" beforeDir="false" afterPath="$PROJECT_DIR$/.nginx/nginx.conf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/router/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/Login.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/Login.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/postgres/backups/dump.sql" beforeDir="false" afterPath="$PROJECT_DIR$/postgres/backups/dump.sql" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -84,7 +81,7 @@
       <workItem from="1670947805501" duration="6919000" />
       <workItem from="1671014951426" duration="11979000" />
       <workItem from="1671190895459" duration="4530000" />
-      <workItem from="1671266565470" duration="3186000" />
+      <workItem from="1671266565470" duration="9657000" />
     </task>
     <task id="LOCAL-00001" summary="Initial project commit">
       <created>1668410344559</created>
@@ -135,7 +132,14 @@
       <option name="project" value="LOCAL" />
       <updated>1671043634546</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Docker-compose for sql">
+      <created>1671270381550</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1671270381550</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -171,6 +175,7 @@
     <MESSAGE value="User Label" />
     <MESSAGE value="Docker" />
     <MESSAGE value="Docker full" />
-    <option name="LAST_COMMIT_MESSAGE" value="Docker full" />
+    <MESSAGE value="Docker-compose for sql" />
+    <option name="LAST_COMMIT_MESSAGE" value="Docker-compose for sql" />
   </component>
 </project>
