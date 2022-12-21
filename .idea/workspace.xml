@@ -4,166 +4,22 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9505743b-40fb-46e8-b453-f38672779fc8" name="Changes" comment="Docker-compose for sql">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Dockerfile_back" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile_back" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/postgres/backups/dump.sql" beforeDir="false" afterPath="$PROJECT_DIR$/postgres/backups/dump.sql" afterDir="false" />
+    <list default="true" id="0f15360e-ba34-419a-b844-5e6d2d560480" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.nginx/nginx.conf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/postgres/backups/dump.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/postgres/backups/dump.tar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/postgres/backups/pg_hba.conf" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="package.json" />
-        <option value="Vue Single File Component" />
-      </list>
-    </option>
-  </component>
-  <component name="Git.Settings">
-    <option name="RECENT_BRANCH_BY_REPOSITORY">
-      <map>
-        <entry key="$PROJECT_DIR$" value="master" />
-      </map>
-    </option>
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-  </component>
-  <component name="MarkdownSettingsMigration">
-    <option name="stateVersion" value="1" />
-  </component>
-  <component name="ProjectId" id="2HWmDYl8ZdFtxiokOrk8IAfiKaa" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
-  <component name="ProjectViewState">
-    <option name="hideEmptyMiddlePackages" value="true" />
-    <option name="showLibraryContents" value="true" />
-  </component>
-  <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/postgres/backups" />
-    <property name="nodejs_package_manager_path" value="npm" />
-  </component>
-  <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\enaumova\WebstormProjects\rest_application\postgres\backups" />
-      <recent name="C:\Users\anton\WebstormProjects\rest_application\postgres\backups" />
-      <recent name="C:\Users\anton\WebstormProjects\rest_application" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\anton\WebstormProjects\rest_application\postgres\data" />
-      <recent name="C:\Users\anton\WebstormProjects\rest_application\postgres\backups" />
-    </key>
-  </component>
-  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
-    <task active="true" id="Default" summary="Default task">
-      <changelist id="9505743b-40fb-46e8-b453-f38672779fc8" name="Changes" comment="" />
-      <created>1668409094762</created>
-      <option name="number" value="Default" />
-      <option name="presentableId" value="Default" />
-      <updated>1668409094762</updated>
-      <workItem from="1668409095870" duration="27816000" />
-      <workItem from="1670947805501" duration="6919000" />
-      <workItem from="1671014951426" duration="11979000" />
-      <workItem from="1671190895459" duration="4530000" />
-      <workItem from="1671266565470" duration="9657000" />
-    </task>
-    <task id="LOCAL-00001" summary="Initial project commit">
-      <created>1668410344559</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1668410344559</updated>
-    </task>
-    <task id="LOCAL-00002" summary="Initial project commit">
-      <created>1668419401350</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1668419401350</updated>
-    </task>
-    <task id="LOCAL-00003" summary="Users View Changes">
-      <created>1668431453269</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1668431453269</updated>
-    </task>
-    <task id="LOCAL-00004" summary="Useless files were deleted, input fields were fixed">
-      <created>1668432812637</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1668432812637</updated>
-    </task>
-    <task id="LOCAL-00005" summary="User Label">
-      <created>1668495978247</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1668495978247</updated>
-    </task>
-    <task id="LOCAL-00006" summary="Docker">
-      <created>1670958172583</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1670958172584</updated>
-    </task>
-    <task id="LOCAL-00007" summary="Docker full">
-      <created>1671043634545</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1671043634546</updated>
-    </task>
-    <task id="LOCAL-00008" summary="Docker-compose for sql">
-      <created>1671270381550</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1671270381550</updated>
-    </task>
-    <option name="localTasksCounter" value="9" />
     <servers />
-  </component>
-  <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="3" />
-  </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State>
-              <option name="FILTERS">
-                <map>
-                  <entry key="branch">
-                    <value>
-                      <list>
-                        <option value="origin/enaumova" />
-                      </list>
-                    </value>
-                  </entry>
-                </map>
-              </option>
-            </State>
-          </value>
-        </entry>
-      </map>
-    </option>
-  </component>
-  <component name="VcsManagerConfiguration">
-    <MESSAGE value="Initial project commit" />
-    <MESSAGE value="Users View Changes" />
-    <MESSAGE value="Useless files were deleted, input fields were fixed" />
-    <MESSAGE value="User Label" />
-    <MESSAGE value="Docker" />
-    <MESSAGE value="Docker full" />
-    <MESSAGE value="Docker-compose for sql" />
-    <option name="LAST_COMMIT_MESSAGE" value="Docker-compose for sql" />
   </component>
 </project>
