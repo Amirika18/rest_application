@@ -18,7 +18,7 @@ import ChangePassword from "./views/ChangePassword.vue";
     <Login @login-status="changeHeader"></Login>
   </div>
   <div class="registration" v-if="this.$route.meta.layout==='registration'">
-    <Registration @registration="userRegistration"></Registration>
+    <Registration @login-status="changeHeader" @registration="userRegistration"></Registration>
   </div>
   <div class="recovery" v-if="this.$route.meta.layout==='recovery'">
     <RecoveryView></RecoveryView>

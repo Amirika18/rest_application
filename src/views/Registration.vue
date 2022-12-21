@@ -4,7 +4,7 @@
       <div id="label">Регистрация</div>
       <input id="login" placeholder="Login">
       <input id="password" type="password" placeholder="Password">
-      <input id="password_repeat" type="password" placeholder="Repeat password">
+<!--      <input id="password_repeat" type="password" placeholder="Repeat password">-->
       <input id="email" type="email" placeholder="Email">
       <button type="submit" id="button" @click="sendData">Зарегестрироваться</button>
     </div>
@@ -13,6 +13,7 @@
 
 <script>
 import emailjs from '@emailjs/browser';
+import urlDb from "../../params";
 
 export default {
   data() {
@@ -23,6 +24,32 @@ export default {
   name: "Registration",
   methods: {
     sendData() {
+      let url = urlDb + '/auth/register/internal/full';
+      const login = document.getElementById("login");
+      const password = document.getElementById("password");
+      const email = document.getElementById("email");
+      fetch(url, {
+        method: "post",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          login: login.value,
+          password: password.value,
+          email: email.value
+        })
+      })
+          .then(res => {
+            if (res.ok) {
+              document.cookie = "user=" + login.value;
+              console.log("cuca  ", document.cookie)
+              this.$emit('login-status')
+              this.$router.push("/users")
+            }
+            else console.log(res)
+          })
+    },
+    sendEmail() {
       // https://dashboard.emailjs.com/admin
       if (this.sendEmails) {
         emailjs.send('service_v10hdb8', 'template_2lgjdlf', {
