@@ -46,8 +46,15 @@ export default {
       if (cookie["user"]) {
         this.isLogin = true;
         this.user = cookie["user"];
+
+        return cookie["user"]
       }
-      return cookie["user"]
+      else if (cookie[" user"]) {
+        this.isLogin = true;
+        this.user = cookie[" user"];
+
+        return cookie[" user"]
+      }
     },
     login() {
       this.user = this.checkCookie();

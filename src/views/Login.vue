@@ -24,7 +24,7 @@ export default {
   },
   methods: {
     sendData() {
-      let url = urlDb + '/auth/login';
+      let url = urlDb + '/auth/login/internal';
       const login = document.getElementById("login");
       const password = document.getElementById("password");
       fetch(url, {

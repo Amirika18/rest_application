@@ -41,6 +41,7 @@ export default {
     }
   },
   created() {
+    console.log("cuceees", document.cookie)
     this.getData()
   },
   beforeCreate() {}
