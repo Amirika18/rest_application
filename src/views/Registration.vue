@@ -12,8 +12,35 @@
 </template>
 
 <script>
+import emailjs from '@emailjs/browser';
+
 export default {
-  name: "Registration"
+  data() {
+    return {
+      sendEmails: false
+    }
+  },
+  name: "Registration",
+  methods: {
+    sendData() {
+      // https://dashboard.emailjs.com/admin
+      if (this.sendEmails) {
+        emailjs.send('service_v10hdb8', 'template_2lgjdlf', {
+          from_name: "Vue app",
+          to_name: document.getElementById("login").value,
+          message: "Your account was registered successfully in Vue App.",
+          link: "some_link.com",
+          email: document.getElementById("email").value
+        }, 'XcDbXwQoBpQ4eQwzu')
+            .then((result) => {
+              console.log('SUCCESS!', result.text);
+              if (result.text === "OK") this.$router.push('/');
+            }, (error) => {
+              console.log('FAILED...', error.text);
+            });
+      }
+    }
+  }
 }
 </script>
 

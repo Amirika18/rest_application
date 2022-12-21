@@ -5,6 +5,7 @@
       <input id="login">
       <input id="password" type="password">
       <button type="submit" id="button" @click="sendData">Войти</button>
+      <label id="forgot" @click="goRecovery">Забыли пароль?</label>
       <label id="registration" @click="goRegister">Зарегестрироваться</label>
     </div>
   </div>
@@ -48,6 +49,9 @@ export default {
     },
     goRegister() {
       this.$router.push('/registration')
+    },
+    goRecovery() {
+      this.$router.push('/recovery')
     }
   }
 }
@@ -81,11 +85,11 @@ export default {
   margin: 10px 20px;
   font-size: 24px;
 }
-#registration {
+#registration, #forgot {
   font-size: 20px;
   margin: 10px;
 }
-#registration:hover {
+#registration:hover, #forgot:hover {
   text-decoration: underline;
   cursor: pointer;
 }

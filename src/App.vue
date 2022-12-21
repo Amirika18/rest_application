@@ -4,6 +4,8 @@ import Menu from  './components/Menu.vue'
 import Header from './components/Header.vue'
 import Login from './views/Login.vue'
 import Registration from './views/Registration.vue'
+import RecoveryView from "./views/RecoveryView.vue"
+import ChangePassword from "./views/ChangePassword.vue";
 </script>
 
 <template>
@@ -17,6 +19,12 @@ import Registration from './views/Registration.vue'
   </div>
   <div class="registration" v-if="this.$route.meta.layout==='registration'">
     <Registration @registration="userRegistration"></Registration>
+  </div>
+  <div class="recovery" v-if="this.$route.meta.layout==='recovery'">
+    <RecoveryView></RecoveryView>
+  </div>
+  <div class="recovery" v-if="this.$route.meta.layout==='change'">
+    <ChangePassword></ChangePassword>
   </div>
 </template>
 
